@@ -1,0 +1,229 @@
+{"level":"INFO","time":"2024-11-23T00:11:17.536+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"ERROR","time":"2024-11-23T00:11:17.593+0700","caller":"initialize/mysql.go:13","msg":"InitMysql initialization error","error":"sql: unknown driver \"mysql\" (forgotten import?)","stacktrace":"go_microservice_backend_api/internal/initialize.checkErrorPanic\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/mysql.go:13\ngo_microservice_backend_api/internal/initialize.InitMysql\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/mysql.go:27\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:14\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:14:09.051+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"ERROR","time":"2024-11-23T00:14:09.386+0700","caller":"initialize/mysql.go:13","msg":"InitMysql initialization error","error":"sql: unknown driver \"mysql\" (forgotten import?)","stacktrace":"go_microservice_backend_api/internal/initialize.checkErrorPanic\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/mysql.go:13\ngo_microservice_backend_api/internal/initialize.InitMysql\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/mysql.go:27\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:14\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:15:17.668+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:15:17.989+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:15:18.054+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:22:33.468+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:22:33.468+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:22:33.534+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:26:34.884+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:26:34.885+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:26:34.951+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:30:43.130+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:30:43.130+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:30:43.196+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:32:12.223+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:32:12.223+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:32:12.289+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:34:44.386+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:34:44.387+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-23T00:34:44.453+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:15\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-23T00:35:42.524+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T00:35:44.545+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T00:35:44.611+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:13:24.003+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:13:24.067+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:13:24.076+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:17:23.838+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:17:23.838+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:17:23.847+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:18:08.364+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:18:08.364+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:18:08.380+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:29:51.186+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:29:51.510+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:29:51.515+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:32:21.062+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:32:21.726+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:32:21.733+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:33:10.515+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:33:10.515+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:33:10.521+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:33:43.587+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:33:43.587+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:33:43.595+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:40:17.061+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:40:17.078+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:40:17.086+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:41:08.408+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:41:08.408+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:41:08.415+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:46:14.367+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:46:14.367+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:46:14.375+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:50:41.038+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:50:43.004+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:50:43.016+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:51:38.870+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:51:38.870+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:51:38.877+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:52:09.075+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:52:11.097+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:52:11.102+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:55:59.739+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:55:59.740+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:55:59.746+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T14:57:38.195+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T14:57:38.195+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T14:57:38.202+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:01:42.099+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:01:42.099+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:01:42.107+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:02:50.368+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:02:50.369+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:02:50.376+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:04:18.848+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:04:19.522+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:04:19.527+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:07:05.841+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:07:07.853+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:07:07.860+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:10:22.614+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:10:22.614+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:10:22.621+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:15:47.869+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:15:49.852+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:15:49.858+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:22:09.652+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:22:09.652+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:22:09.659+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:29:38.991+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:29:41.020+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:29:41.025+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:30:30.508+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:30:30.509+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:30:30.516+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:32:03.757+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:32:03.758+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:32:03.767+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:38:03.303+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:38:05.341+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:38:05.349+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:38:35.449+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:38:35.449+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:38:35.455+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:49:36.508+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:49:36.509+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:49:36.545+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T15:56:56.022+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T15:56:57.365+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T15:56:57.371+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-23T21:42:06.494+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-23T21:42:08.465+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-23T21:42:08.476+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T17:22:28.298+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T17:22:28.898+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T17:22:28.978+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T17:33:37.016+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T17:33:37.017+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T17:33:37.022+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T17:34:15.442+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T17:34:15.442+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T17:34:15.449+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T17:55:02.300+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T17:55:04.300+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T17:55:04.306+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:20:42.021+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:20:44.022+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:20:44.028+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:27:06.249+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:27:07.854+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:27:07.860+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:35:16.702+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:35:18.718+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:35:18.724+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:36:04.012+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:36:05.502+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:36:05.510+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:38:00.218+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:38:01.435+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:38:01.440+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:40:10.247+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:40:12.277+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:40:12.283+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:41:17.018+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:41:17.018+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:41:17.026+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T18:51:48.876+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T18:51:50.861+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T18:51:50.867+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T19:36:15.872+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T19:36:15.975+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T19:36:15.985+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T19:45:47.083+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T19:45:49.106+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T19:45:49.123+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T19:47:19.332+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T19:47:19.333+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T19:47:19.341+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T19:50:46.559+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T19:50:47.288+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T19:50:47.296+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T19:52:39.379+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T19:52:39.380+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T19:52:39.385+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T20:09:56.253+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T20:09:56.254+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T20:09:56.264+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-24T20:14:10.414+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-24T20:14:12.411+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-24T20:14:12.419+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-25T22:40:32.217+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-25T22:40:32.565+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-25T22:40:32.582+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-26T14:25:14.565+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-26T14:25:15.355+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-26T14:25:15.422+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 127.0.0.1:6379: connect: connection refused","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/initialize/run.go:16\nmain.main\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/cmd/server/main.go:11\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-11-26T16:30:00.028+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-26T16:30:00.028+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-26T16:30:00.036+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-26T16:32:51.298+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-26T16:32:51.299+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-26T16:32:51.306+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-26T16:36:37.078+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-26T16:36:37.079+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-26T16:36:37.085+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:44:35.481+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:44:35.830+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:44:35.836+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:44:35.839+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:44:35.840+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:44:35.848+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:54:29.448+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:54:29.448+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:54:29.458+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:54:29.461+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:54:29.461+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:54:29.469+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:59:50.850+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:59:50.851+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:59:50.860+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T13:59:50.862+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T13:59:50.862+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T13:59:50.870+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T14:06:42.157+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T14:06:42.158+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T14:06:42.168+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T14:06:42.171+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T14:06:42.171+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T14:06:42.189+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T15:00:57.196+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:00:59.228+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T15:00:59.263+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T15:00:59.272+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:00:59.272+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T15:00:59.300+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T15:01:32.041+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:01:32.042+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T15:01:32.053+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"INFO","time":"2024-11-27T15:01:32.057+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:01:32.057+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T15:01:32.067+0700","caller":"initialize/redis.go:42","msg":"value score is","score":"100"}
+{"level":"ERROR","time":"2024-11-27T15:02:17.386+0700","caller":"account/login.controller.go:65","msg":"Error registering user OTP","error":"Error 1062 (23000): Duplicate entry 'loctodale.service@gmail.com' for key 'pre_go_acc_user_verify_9999.unique_verify_key'","stacktrace":"go_microservice_backend_api/internal/controller/account.(*cLoginController).Register\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/controller/account/login.controller.go:65\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/logger.go:249\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:633\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:589\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:3210\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:2092"}
+{"level":"INFO","time":"2024-11-27T15:07:21.779+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:07:21.779+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"INFO","time":"2024-11-27T15:07:21.786+0700","caller":"initialize/run.go:14","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-11-27T15:07:21.787+0700","caller":"initialize/mysql.go:29","msg":"InitMysql success"}
+{"level":"ERROR","time":"2024-11-27T15:07:51.384+0700","caller":"account/login.controller.go:65","msg":"Error registering user OTP","error":"Error 1062 (23000): Duplicate entry 'loctodale.service@gmail.com' for key 'pre_go_acc_user_verify_9999.unique_verify_key'","stacktrace":"go_microservice_backend_api/internal/controller/account.(*cLoginController).Register\n\t/Volumes/Data/github.com/loctodale/go_microservice_backend_api/internal/controller/account/login.controller.go:65\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/logger.go:249\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:633\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\t/Users/loctodale/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:589\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:3210\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:2092"}

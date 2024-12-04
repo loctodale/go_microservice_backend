@@ -23,7 +23,7 @@ func LoadConfig() {
 	//fmt.Println("Jwt Key::", viper.GetString("security.jwt.key"))
 
 	//config structure
-	if err := viper.Unmarshal(&global.Config); err != nil {
+	if err = viper.Unmarshal(&global.Config); err != nil {
 		fmt.Printf("Unable to decode config %v", err)
 	}
 

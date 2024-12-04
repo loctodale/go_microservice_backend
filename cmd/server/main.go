@@ -23,9 +23,9 @@ import (
 // @BasePath  /v1/2024
 // @schema http
 func main() {
-	initialize.Run()
 
 	r := initialize.Run()
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.Run(":8002")
+
 }

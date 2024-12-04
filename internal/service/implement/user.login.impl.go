@@ -3,8 +3,10 @@ package implement
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"github.com/redis/go-redis/v9"
+	"github.com/segmentio/kafka-go"
 	"go_microservice_backend_api/global"
 	_const "go_microservice_backend_api/internal/const"
 	"go_microservice_backend_api/internal/database"
@@ -12,7 +14,6 @@ import (
 	"go_microservice_backend_api/internal/utils"
 	"go_microservice_backend_api/internal/utils/crypto"
 	"go_microservice_backend_api/internal/utils/random"
-	"go_microservice_backend_api/internal/utils/sendto"
 	"go_microservice_backend_api/pkg/response"
 	"log"
 	"strconv"
@@ -82,7 +83,7 @@ func (s *sUserLogin) Register(ctx context.Context, in *model.RegisterInput) (cod
 	// 6. Send OTP
 	switch in.VerifyType {
 	case _const.EMAIL:
-		err = sendto.SendTextEmailOtp([]string{in.VerifyKey}, _const.HOST_EMAIL, strconv.Itoa(otpNew))
+		//err = sendto.SendTextEmailOtp([]string{in.VerifyKey}, _const.HOST_EMAIL, strconv.Itoa(otpNew))
 		if err != nil {
 			return response.ErrSendEmailOTP, err
 		}
@@ -102,7 +103,23 @@ func (s *sUserLogin) Register(ctx context.Context, in *model.RegisterInput) (cod
 			return response.ErrSendEmailOTP, err
 		}
 		log.Println("last verify id user: ", lastIdVerifyUser)
+		body := make(map[string]interface{})
+		body["email"] = in.VerifyKey
+		body["otp"] = otpNew
+
+		bodyRequest, _ := json.Marshal(body)
+		message := kafka.Message{
+			Key:   []byte("otp-auth"),
+			Value: []byte(bodyRequest),
+			Time:  time.Now(),
+		}
+		err = global.KafkaProducer.WriteMessages(context.Background(), message)
+		if err != nil {
+			fmt.Println(err.Error())
+			panic(err)
+		}
 		return response.CodeSuccess, nil
+		
 		break
 	case _const.MOBILE:
 		return response.CodeSuccess, nil

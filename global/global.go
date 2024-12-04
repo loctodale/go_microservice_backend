@@ -14,4 +14,5 @@ var (
 	Rdb           *redis.Client
 	Mdb           *sql.DB
 	KafkaProducer *kafka.Writer
+	KafkaConsumer *kafka.Reader
 )

@@ -10,13 +10,6 @@ import (
 	"strings"
 )
 
-var (
-	SMTPHost     = global.Config.SMTP.Host
-	SMTPPort     = global.Config.SMTP.Port
-	SMTPUsername = global.Config.SMTP.Username
-	SMTPPassword = global.Config.SMTP.Password
-)
-
 type EmailAddress struct {
 	Address string `json:"address"`
 	Name    string `json:"name"`
@@ -49,10 +42,9 @@ func SendTextEmailOtp(to []string, from string, otp string) error {
 	messageMail := BuildMessage(contentEmail)
 
 	// send email
+	auth := smtp.PlainAuth("", global.Config.SMTP.Username, global.Config.SMTP.Password, global.Config.SMTP.Host)
 
-	auth := smtp.PlainAuth("", SMTPUsername, SMTPPassword, SMTPHost)
-
-	err := smtp.SendMail(SMTPHost+":587", auth, from, to, []byte(messageMail))
+	err := smtp.SendMail(global.Config.SMTP.Host+":587", auth, from, to, []byte(messageMail))
 	if err != nil {
 		global.Logger.Error("Email send fail::", zap.Error(err))
 		return err
@@ -93,9 +85,9 @@ func send(to []string, from string, htmlTemplate string) error {
 
 	// send email
 
-	auth := smtp.PlainAuth("", SMTPUsername, SMTPPassword, SMTPHost)
+	auth := smtp.PlainAuth("", global.Config.SMTP.Username, global.Config.SMTP.Password, global.Config.SMTP.Host)
 
-	err := smtp.SendMail(SMTPHost+":587", auth, from, to, []byte(messageMail))
+	err := smtp.SendMail(global.Config.SMTP.Host+":587", auth, from, to, []byte(messageMail))
 	if err != nil {
 		//global.Logger.Error("Email send fail::", zap.Error(err))
 		return err

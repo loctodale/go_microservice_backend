@@ -10,4 +10,5 @@ import (
 func InitServiceInterface() {
 	queries := database.New(global.Mdb)
 	service.InitUserLogin(implement.NewUserLoginImpl(queries))
+	service.InitSendMailService(implement.NewSendMailService())
 }

@@ -23,8 +23,8 @@ redis:
   password:
   database: 0
 smtp:
-  host: "smtp.gmail.com"
-  port: "587"
-  username: "thang336655@gmail.com"
-  password: "mjwz dorf bevl uqcr"
+  host: smtp.gmail.com
+  port: 587
+  username: thang336655@gmail.com
+  password: mjwz dorf bevl uqcr
 

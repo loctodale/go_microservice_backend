@@ -13,6 +13,8 @@ run:
 	docker compose up -d && go run ./cmd/${APP_NAME}/
 dev:
 	go run ./cmd/${APP_NAME}/
+consumer:
+	go run ./internal/consumer/main/
 docker_up:
 	docker compose up -d
 up_by_one:

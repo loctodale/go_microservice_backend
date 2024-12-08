@@ -1,0 +1,77 @@
+services:
+  zookeeper:
+    image: quay.io/debezium/zookeeper:${DEBEZIUM_VERSION}
+    container_name: demo_zookeeper
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+  kafka0:
+    image: quay.io/debezium/kafka:${DEBEZIUM_VERSION}
+    ports:
+      - '9092:9092'
+      - '29092:29092'
+    links:
+      - zookeeper
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LISTENERS=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka0:9092,EXTERNAL://localhost:29092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: demo_kafka-ui
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka0:9092
+    ports:
+      - "9089:8080"
+    links:
+      - kafka0
+  mysql:
+    image: mysql:latest
+    container_name: demo_mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: shopdevgo
+      MYSQL_USER: crm_user
+      MYSQL_PASSWORD: root1234
+    ports:
+      - "30306:3306"
+  redis:
+    image: redis:7.0
+    container_name: demo_redis_container
+    ports:
+      - "6379:6379"
+  connect:
+    image: quay.io/debezium/connect:${DEBEZIUM_VERSION}
+    container_name: demo_connect
+    ports:
+      - 8083:8083
+    links:
+      - kafka0
+      - mysql
+    environment:
+      - BOOTSTRAP_SERVERS=kafka0:9092
+      - GROUP_ID=1
+      - CONFIG_STORAGE_TOPIC=my_connect_configs
+      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      - STATUS_STORAGE_TOPIC=my_connect_statuses
+  crm.shopdev.com:
+    container_name: go_backend_crm_shopdev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+      - connect
+      - kafka-ui
+      - kafka0
+      - zookeeper
+    ports:
+      - "8008:8002"
+    volumes:
+      - ./certs:/certs

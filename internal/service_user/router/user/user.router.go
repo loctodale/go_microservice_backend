@@ -9,7 +9,7 @@ type UserRouter struct{}
 
 func (ur *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 	//userController, _ := wire.InitUserRouterHandle()
-	userRouterPublic := Router.Group("/user")
+	userRouterPublic := Router.Group("/users")
 	{
 		userRouterPublic.POST("/register", account.LoginController.Register)
 		userRouterPublic.POST("/verify_account", account.LoginController.VerifyOTP)

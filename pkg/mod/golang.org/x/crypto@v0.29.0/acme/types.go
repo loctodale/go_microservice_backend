@@ -68,7 +68,7 @@ type Subproblem struct {
 	// in order for instructions on how to agree to the updated Terms of Service.
 	// In such an event CA sets StatusCode to 403, Type to
 	// "urn:ietf:params:acme:error:userActionRequired", and adds a Link header with relation
-	// "terms-of-service" containing the latest TOS URL.
+	// "terms-of-server" containing the latest TOS URL.
 	Instance string
 	// Identifier may contain the ACME identifier that the error is for.
 	Identifier *AuthzID
@@ -97,7 +97,7 @@ type Error struct {
 	// in order for instructions on how to agree to the updated Terms of Service.
 	// In such an event CA sets StatusCode to 403, ProblemType to
 	// "urn:ietf:params:acme:error:userActionRequired" and a Link header with relation
-	// "terms-of-service" containing the latest TOS URL.
+	// "terms-of-server" containing the latest TOS URL.
 	Instance string
 	// Header is the original server error response headers.
 	// It may be nil.
@@ -288,7 +288,7 @@ type Directory struct {
 	// KeyChangeURL allows to perform account certs rollover flow.
 	KeyChangeURL string
 
-	// Term is a URI identifying the current terms of service.
+	// Term is a URI identifying the current terms of server.
 	Terms string
 
 	// Website is an HTTP or HTTPS URL locating a website

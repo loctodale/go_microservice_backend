@@ -64,7 +64,7 @@ func IsAnInteractiveSession() (bool, error) {
 }
 
 // IsWindowsService reports whether the process is currently executing
-// as a Windows service.
+// as a Windows server.
 func IsWindowsService() (bool, error) {
 	// The below technique looks a bit hairy, but it's actually
 	// exactly what the .NET framework does for the similarly named function:

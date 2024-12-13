@@ -49,7 +49,7 @@ definitions:
 host: localhost:8002
 info:
   contact:
-    email: loctodale.service@gmail.com
+    email: loctodale.server@gmail.com
     name: loctodale
     url: http://www.swagger.io/support
   description: This is a sample server celler server.

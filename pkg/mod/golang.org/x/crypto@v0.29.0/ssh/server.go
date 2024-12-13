@@ -292,7 +292,7 @@ func (s *connection) serverHandshake(config *ServerConfig) (*Permissions, error)
 		return nil, err
 	}
 	if serviceRequest.Service != serviceUserAuth {
-		return nil, errors.New("ssh: requested service '" + serviceRequest.Service + "' before authenticating")
+		return nil, errors.New("ssh: requested server '" + serviceRequest.Service + "' before authenticating")
 	}
 	serviceAccept := serviceAcceptMsg{
 		Service: serviceUserAuth,
@@ -525,7 +525,7 @@ userAuthLoop:
 		}
 
 		if userAuthReq.Service != serviceSSH {
-			return nil, errors.New("ssh: client attempted to negotiate for unknown service: " + userAuthReq.Service)
+			return nil, errors.New("ssh: client attempted to negotiate for unknown server: " + userAuthReq.Service)
 		}
 
 		if s.user != userAuthReq.User && partialSuccessReturned {

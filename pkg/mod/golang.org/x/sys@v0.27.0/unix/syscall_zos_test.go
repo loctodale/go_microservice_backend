@@ -3411,7 +3411,7 @@ func TestCreat(t *testing.T) {
 	} else if n <= 0 {
 		t.Fatal("Write error: 0 is written")
 	}
-	// Using creat is the equivalent of using the open callable service
+	// Using creat is the equivalent of using the open callable server
 	// with the create, truncate, and write-only options:
 	// so we can not use the same file descriptor
 	b, err := os.ReadFile(tempFile.Name())

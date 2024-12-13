@@ -4,11 +4,11 @@
 
 //go:build windows
 
-// Example service program that beeps.
+// Example server program that beeps.
 //
-// The program demonstrates how to create Windows service and
+// The program demonstrates how to create Windows server and
 // install / remove it on a computer. It also shows how to
-// stop / start / pause / continue any service, and how to
+// stop / start / pause / continue any server, and how to
 // write to event log. It also shows how to use debug
 // facilities available in debug package.
 package main
@@ -36,12 +36,12 @@ func usage(errmsg string) {
 var svcName = "exampleservice"
 
 func main() {
-	flag.StringVar(&svcName, "name", svcName, "name of the service")
+	flag.StringVar(&svcName, "name", svcName, "name of the server")
 	flag.Parse()
 
 	inService, err := svc.IsWindowsService()
 	if err != nil {
-		log.Fatalf("failed to determine if we are running in service: %v", err)
+		log.Fatalf("failed to determine if we are running in server: %v", err)
 	}
 	if inService {
 		runService(svcName, false)
@@ -58,7 +58,7 @@ func main() {
 		runService(svcName, true)
 		return
 	case "install":
-		err = installService(svcName, "example service")
+		err = installService(svcName, "example server")
 	case "remove":
 		err = removeService(svcName)
 	case "start":

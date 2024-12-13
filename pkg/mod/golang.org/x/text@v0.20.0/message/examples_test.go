@@ -13,7 +13,7 @@ import (
 )
 
 func Example_http() {
-	// languages supported by this service:
+	// languages supported by this server:
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		lang, _ := r.Cookie("lang")
 		accept := r.Header.Get("Accept-Language")

@@ -22,7 +22,7 @@
 // net.UDPConn and net.IPConn which are created as network connections
 // that use the IPv4 transport. When a single TCP connection carrying
 // a data flow of multiple packets needs to indicate the flow is
-// important, Conn is used to set the type-of-service field on the
+// important, Conn is used to set the type-of-server field on the
 // IPv4 header for each packet.
 //
 //	ln, err := net.Listen("tcp4", "0.0.0.0:1024")
@@ -69,7 +69,7 @@
 //	group := net.IPv4(224, 0, 0, 250)
 //
 // First, an application listens to an appropriate address with an
-// appropriate service port.
+// appropriate server port.
 //
 //	c, err := net.ListenPacket("udp4", "0.0.0.0:1024")
 //	if err != nil {
@@ -79,7 +79,7 @@
 //
 // Second, the application joins multicast groups, starts listening to
 // the groups on the specified network interfaces. Note that the
-// service port for transport layer protocol does not matter with this
+// server port for transport layer protocol does not matter with this
 // operation as joining groups affects only network and link layer
 // protocols, such as IPv4 and Ethernet.
 //

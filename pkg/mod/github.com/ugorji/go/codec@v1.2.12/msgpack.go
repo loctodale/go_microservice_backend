@@ -135,10 +135,10 @@ func mpdesc(bd byte) (s string) {
 }
 
 // MsgpackSpecRpcMultiArgs is a special type which signifies to the MsgpackSpecRpcCodec
-// that the backend RPC service takes multiple arguments, which have been arranged
+// that the backend RPC server takes multiple arguments, which have been arranged
 // in sequence in the slice.
 //
-// The Codec then passes it AS-IS to the rpc service (without wrapping it in an
+// The Codec then passes it AS-IS to the rpc server (without wrapping it in an
 // array of 1 element).
 type MsgpackSpecRpcMultiArgs []interface{}
 
@@ -1131,8 +1131,8 @@ type msgpackSpecRpcCodec struct {
 
 // /////////////// Spec RPC Codec ///////////////////
 func (c *msgpackSpecRpcCodec) WriteRequest(r *rpc.Request, body interface{}) error {
-	// WriteRequest can write to both a Go service, and other services that do
-	// not abide by the 1 argument rule of a Go service.
+	// WriteRequest can write to both a Go server, and other services that do
+	// not abide by the 1 argument rule of a Go server.
 	// We discriminate based on if the body is a MsgpackSpecRpcMultiArgs
 	var bodyArr []interface{}
 	if m, ok := body.(MsgpackSpecRpcMultiArgs); ok {

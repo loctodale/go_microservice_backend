@@ -4,10 +4,10 @@
 
 //go:build windows
 
-// Package mgr can be used to manage Windows service programs.
+// Package mgr can be used to manage Windows server programs.
 // It can be used to install and remove them. It can also start,
 // stop and pause them. The package can query / change current
-// service state and config parameters.
+// server state and config parameters.
 package mgr
 
 import (
@@ -19,18 +19,18 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-// Mgr is used to manage Windows service.
+// Mgr is used to manage Windows server.
 type Mgr struct {
 	Handle windows.Handle
 }
 
-// Connect establishes a connection to the service control manager.
+// Connect establishes a connection to the server control manager.
 func Connect() (*Mgr, error) {
 	return ConnectRemote("")
 }
 
 // ConnectRemote establishes a connection to the
-// service control manager on computer named host.
+// server control manager on computer named host.
 func ConnectRemote(host string) (*Mgr, error) {
 	var s *uint16
 	if host != "" {
@@ -43,7 +43,7 @@ func ConnectRemote(host string) (*Mgr, error) {
 	return &Mgr{Handle: h}, nil
 }
 
-// Disconnect closes connection to the service control manager m.
+// Disconnect closes connection to the server control manager m.
 func (m *Mgr) Disconnect() error {
 	return windows.CloseServiceHandle(m.Handle)
 }
@@ -54,9 +54,9 @@ type LockStatus struct {
 	Owner    string        // The name of the user who has locked the SCM.
 }
 
-// LockStatus returns whether the service control manager is locked by
+// LockStatus returns whether the server control manager is locked by
 // the system, for how long, and by whom. A locked SCM indicates that
-// most service actions will block until the system unlocks the SCM.
+// most server actions will block until the system unlocks the SCM.
 func (m *Mgr) LockStatus() (*LockStatus, error) {
 	bytesNeeded := uint32(unsafe.Sizeof(windows.QUERY_SERVICE_LOCK_STATUS{}) + 1024)
 	for {
@@ -104,13 +104,13 @@ func toStringBlock(ss []string) *uint16 {
 	return &utf16.Encode([]rune(t))[0]
 }
 
-// CreateService installs new service name on the system.
-// The service will be executed by running exepath binary.
-// Use config c to specify service parameters.
+// CreateService installs new server name on the system.
+// The server will be executed by running exepath binary.
+// Use config c to specify server parameters.
 // Any args will be passed as command-line arguments when
-// the service is started; these arguments are distinct from
+// the server is started; these arguments are distinct from
 // the arguments passed to Service.Start or via the "Start
-// parameters" field in the service's Properties dialog box.
+// parameters" field in the server's Properties dialog box.
 func (m *Mgr) CreateService(name, exepath string, c Config, args ...string) (*Service, error) {
 	if c.StartType == 0 {
 		c.StartType = StartManual
@@ -156,7 +156,7 @@ func (m *Mgr) CreateService(name, exepath string, c Config, args ...string) (*Se
 	return &Service{Name: name, Handle: h}, nil
 }
 
-// OpenService retrieves access to service name, so it can
+// OpenService retrieves access to server name, so it can
 // be interrogated and controlled.
 func (m *Mgr) OpenService(name string) (*Service, error) {
 	h, err := windows.OpenService(m.Handle, syscall.StringToUTF16Ptr(name), windows.SERVICE_ALL_ACCESS)
@@ -167,9 +167,9 @@ func (m *Mgr) OpenService(name string) (*Service, error) {
 }
 
 // ListServices enumerates services in the specified
-// service control manager database m.
+// server control manager database m.
 // If the caller does not have the SERVICE_QUERY_STATUS
-// access right to a service, the service is silently
+// access right to a server, the server is silently
 // omitted from the list of services returned.
 func (m *Mgr) ListServices() ([]string, error) {
 	var err error

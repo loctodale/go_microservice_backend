@@ -30,7 +30,7 @@ services:
     links:
       - kafka0
   mysql:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: demo_mysql_container
     environment:
       MYSQL_ROOT_PASSWORD: root1234
@@ -62,7 +62,7 @@ services:
     container_name: go_backend_crm_shopdev
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: cmd/server/user/Dockerfile
     restart: always
     depends_on:
       - mysql
@@ -73,5 +73,39 @@ services:
       - zookeeper
     ports:
       - "8008:8002"
+    volumes:
+      - ./certs:/certs
+  crm.sendmail.com:
+    container_name: go_sendmail_service
+    build:
+      context: .
+      dockerfile: cmd/server/sendmail/Dockerfile
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+      - connect
+      - kafka-ui
+      - kafka0
+      - zookeeper
+    ports:
+      - "8009:8003"
+    volumes:
+      - ./certs:/certs
+  crm.shop.com:
+    container_name: go_shop_service
+    build:
+      context: .
+      dockerfile: cmd/server/shop/Dockerfile
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+      - connect
+      - kafka-ui
+      - kafka0
+      - zookeeper
+    ports:
+      - "8010:8004"
     volumes:
       - ./certs:/certs

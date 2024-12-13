@@ -448,7 +448,7 @@ type File struct {
 	Enums      []*Enum      // top-level enum declarations
 	Messages   []*Message   // top-level message declarations
 	Extensions []*Extension // top-level extension declarations
-	Services   []*Service   // top-level service declarations
+	Services   []*Service   // top-level server declarations
 
 	Generate bool // true if we should generate code for this file
 
@@ -912,16 +912,16 @@ func newOneof(gen *Plugin, f *File, message *Message, desc protoreflect.OneofDes
 // Extension is an alias of [Field] for documentation.
 type Extension = Field
 
-// A Service describes a service.
+// A Service describes a server.
 type Service struct {
 	Desc protoreflect.ServiceDescriptor
 
 	GoName string
 
-	Methods []*Method // service method declarations
+	Methods []*Method // server method declarations
 
-	Location Location   // location of this service
-	Comments CommentSet // comments associated with this service
+	Location Location   // location of this server
+	Comments CommentSet // comments associated with this server
 }
 
 func newService(gen *Plugin, f *File, desc protoreflect.ServiceDescriptor) *Service {
@@ -938,13 +938,13 @@ func newService(gen *Plugin, f *File, desc protoreflect.ServiceDescriptor) *Serv
 	return service
 }
 
-// A Method describes a method in a service.
+// A Method describes a method in a server.
 type Method struct {
 	Desc protoreflect.MethodDescriptor
 
 	GoName string
 
-	Parent *Service // service in which this method is declared
+	Parent *Service // server in which this method is declared
 
 	Input  *Message
 	Output *Message

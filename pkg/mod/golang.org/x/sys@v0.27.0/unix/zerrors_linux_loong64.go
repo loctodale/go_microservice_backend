@@ -809,7 +809,7 @@ var errorList = [...]struct {
 	{126, "ENOKEY", "required certs not available"},
 	{127, "EKEYEXPIRED", "certs has expired"},
 	{128, "EKEYREVOKED", "certs has been revoked"},
-	{129, "EKEYREJECTED", "certs was rejected by service"},
+	{129, "EKEYREJECTED", "certs was rejected by server"},
 	{130, "EOWNERDEAD", "owner died"},
 	{131, "ENOTRECOVERABLE", "state not recoverable"},
 	{132, "ERFKILL", "operation not possible due to RF-kill"},

@@ -2112,11 +2112,11 @@ func doTestMsgpackRpcSpecPythonClientToGoSvc(t *testing.T, h Handle) {
 	// seems 10ms is not enough for test run; set high to 1 second, and client will close when done
 	exitSleepDur := 1000 * time.Millisecond
 	port := doTestCodecRpcOne(t, MsgpackSpecRpc, h, false, exitSleepDur)
-	cmd := exec.Command("python", "test.py", "rpc-client-go-service", strconv.Itoa(port))
+	cmd := exec.Command("python", "test.py", "rpc-client-go-server", strconv.Itoa(port))
 	var cmdout []byte
 	var err error
 	if cmdout, err = cmd.CombinedOutput(); err != nil {
-		t.Logf("-------- Error running test.py rpc-client-go-service. Err: %v", err)
+		t.Logf("-------- Error running test.py rpc-client-go-server. Err: %v", err)
 		t.Logf("         %v", string(cmdout))
 		t.FailNow()
 	}

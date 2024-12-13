@@ -27,7 +27,7 @@ const (
 //sys	TranslateName(accName *uint16, accNameFormat uint32, desiredNameFormat uint32, translatedName *uint16, nSize *uint32) (err error) [failretval&0xff==0] = secur32.TranslateNameW
 //sys	GetUserNameEx(nameFormat uint32, nameBuffre *uint16, nSize *uint32) (err error) [failretval&0xff==0] = secur32.GetUserNameExW
 
-// TranslateAccountName converts a directory service
+// TranslateAccountName converts a directory server
 // object name from one format to another.
 func TranslateAccountName(username string, from, to uint32, initSize int) (string, error) {
 	u, e := UTF16PtrFromString(username)

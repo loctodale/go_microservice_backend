@@ -73,15 +73,15 @@ func runService(name string, isDebug bool) {
 	}
 	defer elog.Close()
 
-	elog.Info(1, fmt.Sprintf("starting %s service", name))
+	elog.Info(1, fmt.Sprintf("starting %s server", name))
 	run := svc.Run
 	if isDebug {
 		run = debug.Run
 	}
 	err = run(name, &exampleService{})
 	if err != nil {
-		elog.Error(1, fmt.Sprintf("%s service failed: %v", name, err))
+		elog.Error(1, fmt.Sprintf("%s server failed: %v", name, err))
 		return
 	}
-	elog.Info(1, fmt.Sprintf("%s service stopped", name))
+	elog.Info(1, fmt.Sprintf("%s server stopped", name))
 }

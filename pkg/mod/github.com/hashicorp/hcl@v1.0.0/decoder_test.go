@@ -678,17 +678,17 @@ func TestDecode_sliceExpand(t *testing.T) {
 	}
 
 	type testStruct struct {
-		Services []testInner `hcl:"service,expand"`
+		Services []testInner `hcl:"server,expand"`
 	}
 
 	expected := testStruct{
 		Services: []testInner{
 			testInner{
-				Name: "my-service-0",
+				Name: "my-server-0",
 				Key:  "value",
 			},
 			testInner{
-				Name: "my-service-1",
+				Name: "my-server-1",
 				Key:  "value",
 			},
 		},

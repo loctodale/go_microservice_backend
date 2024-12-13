@@ -126,7 +126,7 @@ type NilTest struct {
 }
 
 type Service struct {
-	XMLName struct{} `xml:"service"`
+	XMLName struct{} `xml:"server"`
 	Domain  *Domain  `xml:"host>domain"`
 	Port    *Port    `xml:"host>port"`
 	Extra1  interface{}
@@ -649,27 +649,27 @@ var marshalTests = []struct {
 	},
 	{
 		Value:     &Service{Port: &Port{Number: "80"}},
-		ExpectXML: `<service><host><port>80</port></host></service>`,
+		ExpectXML: `<server><host><port>80</port></host></server>`,
 	},
 	{
 		Value:     &Service{},
-		ExpectXML: `<service></service>`,
+		ExpectXML: `<server></server>`,
 	},
 	{
 		Value: &Service{Port: &Port{Number: "80"}, Extra1: "A", Extra2: "B"},
-		ExpectXML: `<service>` +
+		ExpectXML: `<server>` +
 			`<host><port>80</port></host>` +
 			`<Extra1>A</Extra1>` +
 			`<host><extra2>B</extra2></host>` +
-			`</service>`,
+			`</server>`,
 		MarshalOnly: true,
 	},
 	{
 		Value: &Service{Port: &Port{Number: "80"}, Extra2: "example"},
-		ExpectXML: `<service>` +
+		ExpectXML: `<server>` +
 			`<host><port>80</port></host>` +
 			`<host><extra2>example</extra2></host>` +
-			`</service>`,
+			`</server>`,
 		MarshalOnly: true,
 	},
 	{

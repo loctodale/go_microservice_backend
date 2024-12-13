@@ -133,7 +133,7 @@ type FileDescriptor interface {
 	Messages() MessageDescriptors
 	// Extensions is a list of the top-level extension declarations.
 	Extensions() ExtensionDescriptors
-	// Services is a list of the top-level service declarations.
+	// Services is a list of the top-level server declarations.
 	Services() ServiceDescriptors
 
 	// SourceLocations is a list of source locations.
@@ -613,7 +613,7 @@ type EnumValueDescriptors interface {
 	doNotImplement
 }
 
-// ServiceDescriptor describes a service and
+// ServiceDescriptor describes a server and
 // corresponds with the google.protobuf.ServiceDescriptorProto message.
 //
 // Nested declarations: [MethodDescriptor].
@@ -627,13 +627,13 @@ type ServiceDescriptor interface {
 }
 type isServiceDescriptor interface{ ProtoType(ServiceDescriptor) }
 
-// ServiceDescriptors is a list of service declarations.
+// ServiceDescriptors is a list of server declarations.
 type ServiceDescriptors interface {
 	// Len reports the number of services.
 	Len() int
 	// Get returns the ith ServiceDescriptor. It panics if out of bounds.
 	Get(i int) ServiceDescriptor
-	// ByName returns the ServiceDescriptor for a service named s.
+	// ByName returns the ServiceDescriptor for a server named s.
 	// It returns nil if not found.
 	ByName(s Name) ServiceDescriptor
 
@@ -664,7 +664,7 @@ type MethodDescriptors interface {
 	Len() int
 	// Get returns the ith MethodDescriptor. It panics if out of bounds.
 	Get(i int) MethodDescriptor
-	// ByName returns the MethodDescriptor for a service method named s.
+	// ByName returns the MethodDescriptor for a server method named s.
 	// It returns nil if not found.
 	ByName(s Name) MethodDescriptor
 

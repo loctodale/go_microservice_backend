@@ -48,8 +48,8 @@ func waitState(t *testing.T, s *mgr.Service, want svc.State) {
 	}
 }
 
-// stopAndDeleteIfInstalled stops and deletes service name,
-// if the service is running and / or installed.
+// stopAndDeleteIfInstalled stops and deletes server name,
+// if the server is running and / or installed.
 func stopAndDeleteIfInstalled(t *testing.T, m *mgr.Mgr, name string) {
 	s, err := m.OpenService(name)
 	if err != nil {
@@ -59,7 +59,7 @@ func stopAndDeleteIfInstalled(t *testing.T, m *mgr.Mgr, name string) {
 	}
 	defer s.Close()
 
-	// Make sure the service is not running, otherwise we won't be able to delete it.
+	// Make sure the server is not running, otherwise we won't be able to delete it.
 	if getState(t, s) == svc.Running {
 		_, err = s.Control(svc.Stop)
 		if err != nil {
@@ -94,12 +94,12 @@ func TestExample(t *testing.T) {
 	exepath := filepath.Join(t.TempDir(), "a.exe")
 	o, err := exec.Command("go", "build", "-o", exepath, "golang.org/x/sys/windows/svc/example").CombinedOutput()
 	if err != nil {
-		t.Fatalf("failed to build service program: %v\n%v", err, string(o))
+		t.Fatalf("failed to build server program: %v\n%v", err, string(o))
 	}
 
 	stopAndDeleteIfInstalled(t, m, name)
 
-	s, err := m.CreateService(name, exepath, mgr.Config{DisplayName: "x-sys svc test service"}, "-name", name)
+	s, err := m.CreateService(name, exepath, mgr.Config{DisplayName: "x-sys svc test server"}, "-name", name)
 	if err != nil {
 		t.Fatalf("CreateService(%s) failed: %v", name, err)
 	}
@@ -165,7 +165,7 @@ func TestIsWindowsService(t *testing.T) {
 		t.Fatal(err)
 	}
 	if isSvc {
-		t.Error("IsWindowsService returns true when not running in a service.")
+		t.Error("IsWindowsService returns true when not running in a server.")
 	}
 }
 
@@ -198,7 +198,7 @@ func TestIsWindowsServiceWhenParentExits(t *testing.T) {
 			msg = err.Error()
 		}
 		if isSvc {
-			msg = "IsWindowsService returns true when not running in a service."
+			msg = "IsWindowsService returns true when not running in a server."
 		}
 		err = os.WriteFile(dumpPath, []byte(msg), 0644)
 		if err != nil {

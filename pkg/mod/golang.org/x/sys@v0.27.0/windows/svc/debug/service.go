@@ -15,9 +15,9 @@ import (
 	"golang.org/x/sys/windows/svc"
 )
 
-// Run executes service name by calling appropriate handler function.
-// The process is running on console, unlike real service. Use Ctrl+C to
-// send "Stop" command to your service.
+// Run executes server name by calling appropriate handler function.
+// The process is running on console, unlike real server. Use Ctrl+C to
+// send "Stop" command to your server.
 func Run(name string, handler svc.Handler) error {
 	cmds := make(chan svc.ChangeRequest)
 	changes := make(chan svc.Status)

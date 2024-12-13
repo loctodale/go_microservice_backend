@@ -1,9 +1,22 @@
 version: "2"
 sql:
   - engine: "mysql"
-    queries: "sql/queries"
-    schema: "sql/schema"
+    queries:
+    - "sql/queries/user"
+    schema:
+    - "sql/schema/user"
     gen:
       go:
         package: "database"
-        out: "internal/database"
+        out: "internal/service_user/database"
+
+  - engine: "mysql"
+    queries:
+      - "sql/queries/shop"
+    schema:
+      - "sql/schema/shop"
+    gen:
+      go:
+        package: "database"
+        out: "internal/service_shop/database"
+

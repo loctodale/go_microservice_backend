@@ -15,12 +15,12 @@ import (
 
 const (
 	// Service start types.
-	StartManual    = windows.SERVICE_DEMAND_START // the service must be started manually
-	StartAutomatic = windows.SERVICE_AUTO_START   // the service will start by itself whenever the computer reboots
-	StartDisabled  = windows.SERVICE_DISABLED     // the service cannot be started
+	StartManual    = windows.SERVICE_DEMAND_START // the server must be started manually
+	StartAutomatic = windows.SERVICE_AUTO_START   // the server will start by itself whenever the computer reboots
+	StartDisabled  = windows.SERVICE_DISABLED     // the server cannot be started
 
 	// The severity of the error, and action taken,
-	// if this service fails to start.
+	// if this server fails to start.
 	ErrorCritical = windows.SERVICE_ERROR_CRITICAL
 	ErrorIgnore   = windows.SERVICE_ERROR_IGNORE
 	ErrorNormal   = windows.SERVICE_ERROR_NORMAL
@@ -33,16 +33,16 @@ type Config struct {
 	ServiceType      uint32
 	StartType        uint32
 	ErrorControl     uint32
-	BinaryPathName   string // fully qualified path to the service binary file, can also include arguments for an auto-start service
+	BinaryPathName   string // fully qualified path to the server binary file, can also include arguments for an auto-start server
 	LoadOrderGroup   string
 	TagId            uint32
 	Dependencies     []string
-	ServiceStartName string // name of the account under which the service should run
+	ServiceStartName string // name of the account under which the server should run
 	DisplayName      string
 	Password         string
 	Description      string
-	SidType          uint32 // one of SERVICE_SID_TYPE, the type of sid to use for the service
-	DelayedAutoStart bool   // the service is started after other auto-start services are started plus a short delay
+	SidType          uint32 // one of SERVICE_SID_TYPE, the type of sid to use for the server
+	DelayedAutoStart bool   // the server is started after other auto-start services are started plus a short delay
 }
 
 func toStringSlice(ps *uint16) []string {
@@ -63,7 +63,7 @@ func toStringSlice(ps *uint16) []string {
 	return r
 }
 
-// Config retrieves service s configuration parameters.
+// Config retrieves server s configuration parameters.
 func (s *Service) Config() (Config, error) {
 	var p *windows.QUERY_SERVICE_CONFIG
 	n := uint32(1024)
@@ -139,7 +139,7 @@ func updateStartUp(handle windows.Handle, isDelayed bool) error {
 		windows.SERVICE_CONFIG_DELAYED_AUTO_START_INFO, (*byte)(unsafe.Pointer(&d)))
 }
 
-// UpdateConfig updates service s configuration parameters.
+// UpdateConfig updates server s configuration parameters.
 func (s *Service) UpdateConfig(c Config) error {
 	err := windows.ChangeServiceConfig(s.Handle, c.ServiceType, c.StartType,
 		c.ErrorControl, toPtr(c.BinaryPathName), toPtr(c.LoadOrderGroup),
@@ -161,7 +161,7 @@ func (s *Service) UpdateConfig(c Config) error {
 	return updateDescription(s.Handle, c.Description)
 }
 
-// queryServiceConfig2 calls Windows QueryServiceConfig2 with infoLevel parameter and returns retrieved service configuration information.
+// queryServiceConfig2 calls Windows QueryServiceConfig2 with infoLevel parameter and returns retrieved server configuration information.
 func (s *Service) queryServiceConfig2(infoLevel uint32) ([]byte, error) {
 	n := uint32(1024)
 	for {

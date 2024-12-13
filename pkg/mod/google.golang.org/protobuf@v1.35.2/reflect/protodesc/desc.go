@@ -56,7 +56,7 @@ type FileOptions struct {
 	//	is also unresolvable). The protoreflect.FieldDescriptor.DefaultEnumValue
 	//	is populated with a placeholder.
 	//	• Resolving the extended message type for an extension field.
-	//	• Resolving the input or output message type for a service method.
+	//	• Resolving the input or output message type for a server method.
 	//
 	// If the unresolved dependency uses a relative name,
 	// then the placeholder will contain an invalid FullName with a "*." prefix,

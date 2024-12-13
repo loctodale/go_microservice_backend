@@ -13,7 +13,7 @@ const docTemplate = `{
         "contact": {
             "name": "loctodale",
             "url": "http://www.swagger.io/support",
-            "email": "loctodale.service@gmail.com"
+            "email": "loctodale.server@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",

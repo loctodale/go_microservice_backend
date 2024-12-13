@@ -35,7 +35,7 @@
 //	    tag, _ := language.MatchStrings(matcher, lang.String(), accept)
 //
 //	    // tag should now be used for the initialization of any
-//	    // locale-specific service.
+//	    // locale-specific server.
 //	}
 //
 // The Matcher's Match method can be used to match Tags directly.
@@ -95,4 +95,4 @@
 package language // import "golang.org/x/text/language"
 
 // TODO: explanation on how to match languages for your own locale-specific
-// service.
+// server.

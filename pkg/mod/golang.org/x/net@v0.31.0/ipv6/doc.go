@@ -70,7 +70,7 @@
 //	group := net.ParseIP("ff02::114")
 //
 // First, an application listens to an appropriate address with an
-// appropriate service port.
+// appropriate server port.
 //
 //	c, err := net.ListenPacket("udp6", "[::]:1024")
 //	if err != nil {
@@ -80,7 +80,7 @@
 //
 // Second, the application joins multicast groups, starts listening to
 // the groups on the specified network interfaces. Note that the
-// service port for transport layer protocol does not matter with this
+// server port for transport layer protocol does not matter with this
 // operation as joining groups affects only network and link layer
 // protocols, such as IPv6 and Ethernet.
 //

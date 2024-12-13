@@ -26,7 +26,7 @@ func (p *SourcePath) appendFileDescriptorProto(b []byte) []byte {
 	case 5:
 		b = p.appendRepeatedField(b, "enum_type", (*SourcePath).appendEnumDescriptorProto)
 	case 6:
-		b = p.appendRepeatedField(b, "service", (*SourcePath).appendServiceDescriptorProto)
+		b = p.appendRepeatedField(b, "server", (*SourcePath).appendServiceDescriptorProto)
 	case 7:
 		b = p.appendRepeatedField(b, "extension", (*SourcePath).appendFieldDescriptorProto)
 	case 8:

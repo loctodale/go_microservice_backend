@@ -765,7 +765,7 @@ func TestSockaddrNFCLLCP_sockaddr(t *testing.T) {
 				NFCProtocol:    0xBBBBBBBB,
 				DestinationSAP: 55,
 				SourceSAP:      56,
-				ServiceName:    "test service",
+				ServiceName:    "test server",
 			},
 			raw: &RawSockaddrNFCLLCP{
 				Sa_family:        AF_NFC,
@@ -779,7 +779,7 @@ func TestSockaddrNFCLLCP_sockaddr(t *testing.T) {
 			},
 		},
 		{
-			name: "too long service name",
+			name: "too long server name",
 			sa: &SockaddrNFCLLCP{
 				DeviceIdx:      12345678,
 				TargetIdx:      87654321,

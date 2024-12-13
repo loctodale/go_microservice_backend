@@ -19,9 +19,37 @@ type RedisSetting struct {
 	Port     string `mapstructure:"port"`
 	Password string `mapstructure:"password"`
 	Database int    `mapstructure:"database"`
+	Numbits  int    `mapstructure:"numbits"`
 }
 
 type MySQLSetting struct {
+	UserTable    UserTableConstr    `mapstructure:"user_service"`
+	ProductTable ProductTableConstr `mapstructure:"product_service"`
+	ShopTable    ShopTableConstr    `mapstructure:"shop_service"`
+}
+type UserTableConstr struct {
+	Host            string `mapstructure:"host"`
+	Port            string `mapstructure:"port"`
+	Username        string `mapstructure:"username"`
+	Password        string `mapstructure:"password"`
+	DbName          string `mapstructure:"dbname"`
+	MaxIdleConns    int    `mapstructure:"max_idle_conns"`
+	MaxOpenConns    int    `mapstructure:"max_open_conns"`
+	ConnMaxLifeTime int    `mapstructure:"conn_max_life_time"`
+}
+
+type ProductTableConstr struct {
+	Host            string `mapstructure:"host"`
+	Port            string `mapstructure:"port"`
+	Username        string `mapstructure:"username"`
+	Password        string `mapstructure:"password"`
+	DbName          string `mapstructure:"dbname"`
+	MaxIdleConns    int    `mapstructure:"max_idle_conns"`
+	MaxOpenConns    int    `mapstructure:"max_open_conns"`
+	ConnMaxLifeTime int    `mapstructure:"conn_max_life_time"`
+}
+
+type ShopTableConstr struct {
 	Host            string `mapstructure:"host"`
 	Port            string `mapstructure:"port"`
 	Username        string `mapstructure:"username"`

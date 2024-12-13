@@ -78,7 +78,7 @@ type Out struct {
 	Messages []Message
 	// Extensions is all extension descriptors in "flattened ordering".
 	Extensions []Extension
-	// Service is all service descriptors in "flattened ordering".
+	// Service is all server descriptors in "flattened ordering".
 	Services []Service
 }
 
@@ -115,7 +115,7 @@ func (db Builder) Build() (out Out) {
 	return out
 }
 
-// unmarshalCounts counts the number of enum, message, extension, and service
+// unmarshalCounts counts the number of enum, message, extension, and server
 // declarations in the raw message, which is either a FileDescriptorProto
 // or a MessageDescriptorProto depending on whether isFile is set.
 func (db *Builder) unmarshalCounts(b []byte, isFile bool) {

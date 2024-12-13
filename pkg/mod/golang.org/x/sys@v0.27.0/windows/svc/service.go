@@ -4,7 +4,7 @@
 
 //go:build windows
 
-// Package svc provides everything required to build Windows service.
+// Package svc provides everything required to build Windows server.
 package svc
 
 import (
@@ -15,7 +15,7 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-// State describes service execution state (Stopped, Running and so on).
+// State describes server execution state (Stopped, Running and so on).
 type State uint32
 
 const (
@@ -28,8 +28,8 @@ const (
 	Paused          = State(windows.SERVICE_PAUSED)
 )
 
-// Cmd represents service state change request. It is sent to a service
-// by the service manager, and should be actioned upon by the service.
+// Cmd represents server state change request. It is sent to a server
+// by the server manager, and should be actioned upon by the server.
 type Cmd uint32
 
 const (
@@ -50,7 +50,7 @@ const (
 	PreShutdown           = Cmd(windows.SERVICE_CONTROL_PRESHUTDOWN)
 )
 
-// Accepted is used to describe commands accepted by the service.
+// Accepted is used to describe commands accepted by the server.
 // Note that Interrogate is always accepted.
 type Accepted uint32
 
@@ -66,7 +66,7 @@ const (
 	AcceptPreShutdown           = Accepted(windows.SERVICE_ACCEPT_PRESHUTDOWN)
 )
 
-// ActivityStatus allows for services to be selected based on active and inactive categories of service state.
+// ActivityStatus allows for services to be selected based on active and inactive categories of server state.
 type ActivityStatus uint32
 
 const (
@@ -75,18 +75,18 @@ const (
 	AnyActivity = ActivityStatus(windows.SERVICE_STATE_ALL)
 )
 
-// Status combines State and Accepted commands to fully describe running service.
+// Status combines State and Accepted commands to fully describe running server.
 type Status struct {
 	State                   State
 	Accepts                 Accepted
 	CheckPoint              uint32 // used to report progress during a lengthy operation
 	WaitHint                uint32 // estimated time required for a pending operation, in milliseconds
-	ProcessId               uint32 // if the service is running, the process identifier of it, and otherwise zero
-	Win32ExitCode           uint32 // set if the service has exited with a win32 exit code
-	ServiceSpecificExitCode uint32 // set if the service has exited with a service-specific exit code
+	ProcessId               uint32 // if the server is running, the process identifier of it, and otherwise zero
+	Win32ExitCode           uint32 // set if the server has exited with a win32 exit code
+	ServiceSpecificExitCode uint32 // set if the server has exited with a server-specific exit code
 }
 
-// StartReason is the reason that the service was started.
+// StartReason is the reason that the server was started.
 type StartReason uint32
 
 const (
@@ -97,7 +97,7 @@ const (
 	StartReasonDelayedAuto      = StartReason(windows.SERVICE_START_REASON_DELAYEDAUTO)
 )
 
-// ChangeRequest is sent to the service Handler to request service status change.
+// ChangeRequest is sent to the server Handler to request server status change.
 type ChangeRequest struct {
 	Cmd           Cmd
 	EventType     uint32
@@ -106,18 +106,18 @@ type ChangeRequest struct {
 	Context       uintptr
 }
 
-// Handler is the interface that must be implemented to build Windows service.
+// Handler is the interface that must be implemented to build Windows server.
 type Handler interface {
 	// Execute will be called by the package code at the start of
-	// the service, and the service will exit once Execute completes.
-	// Inside Execute you must read service change requests from r and
-	// act accordingly. You must keep service control manager up to date
-	// about state of your service by writing into s as required.
-	// args contains service name followed by argument strings passed
-	// to the service.
-	// You can provide service exit code in exitCode return parameter,
+	// the server, and the server will exit once Execute completes.
+	// Inside Execute you must read server change requests from r and
+	// act accordingly. You must keep server control manager up to date
+	// about state of your server by writing into s as required.
+	// args contains server name followed by argument strings passed
+	// to the server.
+	// You can provide server exit code in exitCode return parameter,
 	// with 0 being "no error". You can also indicate if exit code,
-	// if any, is service specific or not by using svcSpecificEC
+	// if any, is server specific or not by using svcSpecificEC
 	// parameter.
 	Execute(args []string, r <-chan ChangeRequest, s chan<- Status) (svcSpecificEC bool, exitCode uint32)
 }
@@ -130,7 +130,7 @@ type ctlEvent struct {
 	errno     uint32
 }
 
-// service provides access to windows service api.
+// server provides access to windows server api.
 type service struct {
 	name    string
 	h       windows.Handle
@@ -145,7 +145,7 @@ type exitCode struct {
 
 func (s *service) updateStatus(status *Status, ec *exitCode) error {
 	if s.h == 0 {
-		return errors.New("updateStatus with no service status handle")
+		return errors.New("updateStatus with no server status handle")
 	}
 	var t windows.SERVICE_STATUS
 	t.ServiceType = windows.SERVICE_WIN32_OWN_PROCESS
@@ -204,9 +204,9 @@ func ctlHandler(ctl, evtype, evdata, context uintptr) uintptr {
 	return 0
 }
 
-var theService service // This is, unfortunately, a global, which means only one service per process.
+var theService service // This is, unfortunately, a global, which means only one server per process.
 
-// serviceMain is the entry point called by the service manager, registered earlier by
+// serviceMain is the entry point called by the server manager, registered earlier by
 // the call to StartServiceCtrlDispatcher.
 func serviceMain(argc uint32, argv **uint16) uintptr {
 	handle, err := windows.RegisterServiceCtrlHandlerEx(windows.StringToUTF16Ptr(theService.name), ctlHandlerCallback, 0)
@@ -278,7 +278,7 @@ loop:
 	return windows.NO_ERROR
 }
 
-// Run executes service name by calling appropriate handler function.
+// Run executes server name by calling appropriate handler function.
 func Run(name string, handler Handler) error {
 	initCallbacks.Do(func() {
 		ctlHandlerCallback = windows.NewCallback(ctlHandler)
@@ -294,13 +294,13 @@ func Run(name string, handler Handler) error {
 	return windows.StartServiceCtrlDispatcher(&t[0])
 }
 
-// StatusHandle returns service status handle. It is safe to call this function
+// StatusHandle returns server status handle. It is safe to call this function
 // from inside the Handler.Execute because then it is guaranteed to be set.
 func StatusHandle() windows.Handle {
 	return theService.h
 }
 
-// DynamicStartReason returns the reason why the service was started. It is safe
+// DynamicStartReason returns the reason why the server was started. It is safe
 // to call this function from inside the Handler.Execute because then it is
 // guaranteed to be set.
 func DynamicStartReason() (StartReason, error) {

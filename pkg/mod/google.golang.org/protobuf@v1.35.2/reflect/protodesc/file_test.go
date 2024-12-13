@@ -356,12 +356,12 @@ func TestNewFile(t *testing.T) {
 		inDesc: mustParseFile(`
 			name: "test.proto"
 			package: "fizz.buzz"
-			service: [{
+			server: [{
 				name: "S"
 				method: [{name:"M" input_type:"foo.bar.input" output_type:".absolute.foo.bar.output"}]
 			}]
 		`),
-		wantErr: `service method "fizz.buzz.S.M" cannot resolve input: "*.foo.bar.input" not found`,
+		wantErr: `server method "fizz.buzz.S.M" cannot resolve input: "*.foo.bar.input" not found`,
 	}, {
 		label: "allowed unresolved references",
 		inDesc: mustParseFile(`
@@ -373,7 +373,7 @@ func TestNewFile(t *testing.T) {
 				field: [{name:"F1" number:1 label:LABEL_OPTIONAL type_name:"some.other.enum" default_value:"UNKNOWN"}]
 			}]
 			extension: [{name:"X" number:1 label:LABEL_OPTIONAL extendee:"some.extended.message" type:TYPE_MESSAGE type_name:"some.other.message"}]
-			service: [{
+			server: [{
 				name: "S"
 				method: [{name:"M" input_type:"foo.bar.input" output_type:".absolute.foo.bar.output"}]
 			}]
@@ -906,17 +906,17 @@ func TestNewFile(t *testing.T) {
 		// TODO: Test checkValidGroup
 		// TODO: Test checkValidMap
 	}, {
-		label: "empty service",
+		label: "empty server",
 		inDesc: mustParseFile(`
 			name:    "test.proto"
-			service: [{name:"service"}]
+			server: [{name:"server"}]
 		`),
 	}, {
-		label: "service with method with unresolved",
+		label: "server with method with unresolved",
 		inDesc: mustParseFile(`
 			name:    "test.proto"
-			service: [{
-				name: "service"
+			server: [{
+				name: "server"
 				method: [{
 					name:"method"
 					input_type:"foo"
@@ -926,7 +926,7 @@ func TestNewFile(t *testing.T) {
 		`),
 		inOpts: FileOptions{AllowUnresolvable: true},
 	}, {
-		label: "service with wrong reference type",
+		label: "server with wrong reference type",
 		inDeps: []*descriptorpb.FileDescriptorProto{
 			cloneFile(proto3Message),
 			cloneFile(proto2Enum),
@@ -934,8 +934,8 @@ func TestNewFile(t *testing.T) {
 		inDesc: mustParseFile(`
 			name:    "test.proto"
 			dependency: ["proto2_enum.proto", "proto3_message.proto"]
-			service: [{
-				name: "service"
+			server: [{
+				name: "server"
 				method: [{
 					name:        "method"
 					input_type:  ".test.proto2.Enum",
@@ -943,7 +943,7 @@ func TestNewFile(t *testing.T) {
 				}]
 			}]
 		`),
-		wantErr: `service method "service.method" cannot resolve input: resolved "test.proto2.Enum", but it is not an message`,
+		wantErr: `server method "server.method" cannot resolve input: resolved "test.proto2.Enum", but it is not an message`,
 	}}
 
 	for _, tt := range tests {
@@ -1071,7 +1071,7 @@ func TestSourceLocations(t *testing.T) {
 				{name: "BAR", number: 1}
 			]
 		}
-		service: {
+		server: {
 			name: "Service1"
 			method: [
 				{name:"Method1" input_type:".Message1" output_type:".Message1"},

@@ -79,7 +79,7 @@ func TestMain(m *testing.M) {
 		}
 	}()
 
-	// Check if any credentials are present. If not, a fake service account, taken from the link
+	// Check if any credentials are present. If not, a fake server account, taken from the link
 	// would be used: https://github.com/google/oauth2l/blob/master/integration/fixtures/fake-service-account.json
 	cred, err := google.FindDefaultCredentials(ctx)
 	if err != nil && !strings.HasPrefix(err.Error(), "google: could not find default credentials") {
@@ -88,7 +88,7 @@ func TestMain(m *testing.M) {
 
 	if cred == nil {
 		var fakeCredentialsAbsPath string
-		fakeCredentialsAbsPath, err = filepath.Abs("gcs-fake-service-account.json")
+		fakeCredentialsAbsPath, err = filepath.Abs("gcs-fake-server-account.json")
 		if err != nil {
 			panic(err)
 		}

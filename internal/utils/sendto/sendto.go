@@ -3,9 +3,8 @@ package sendto
 import (
 	"bytes"
 	"fmt"
+	"go.uber.org/zap"
 	"go_microservice_backend_api/global"
-	_const "go_microservice_backend_api/internal/const"
-	gomail "gopkg.in/mail.v2"
 	"html/template"
 	"net/smtp"
 	"strings"
@@ -33,44 +32,44 @@ func BuildMessage(mail Mail) string {
 }
 
 func SendTextEmailOtp(to []string, from string, otp string) error {
-	//contentEmail := Mail{
-	//	From:    EmailAddress{Address: from, Name: "test"},
-	//	To:      to,
-	//	Subject: "OTP verification",
-	//	Body:    fmt.Sprintf("Your OTP is %s. Please enter it to verify your account.", otp),
-	//}
-	//
-	//messageMail := BuildMessage(contentEmail)
-	//
-	//// send email
-	//auth := smtp.PlainAuth("", global.Config.SMTP.Username, global.Config.SMTP.Password, global.Config.SMTP.Host)
-	//
-	//err := smtp.SendMail(global.Config.SMTP.Host+":587", auth, from, to, []byte(messageMail))
-	//if err != nil {
-	//	global.Logger.Error("Email send fail::", zap.Error(err))
-	//	return err
-	//}
-	// Create a new message
-	message := gomail.NewMessage()
-
-	// Set email headers
-	message.SetHeader("From", _const.HOST_EMAIL)
-	message.SetHeader("To", to[0])
-	message.SetHeader("Subject", "Verify OTP")
-
-	// Set email body
-	message.SetBody("text/plain", fmt.Sprintf("Your OTP is %s. Please enter it to verify your account.", otp))
-
-	// Set up the SMTP dialer
-	dialer := gomail.NewDialer(global.Config.MailTrap.Host, global.Config.MailTrap.Port, global.Config.MailTrap.Username, global.Config.MailTrap.Password)
-
-	// Send the email
-	if err := dialer.DialAndSend(message); err != nil {
-		fmt.Println("Error Send mail fail:: ", err)
-		panic(err)
-	} else {
-		fmt.Println("Email sent successfully!")
+	contentEmail := Mail{
+		From:    EmailAddress{Address: from, Name: "test"},
+		To:      to,
+		Subject: "OTP verification",
+		Body:    fmt.Sprintf("Your OTP is %s. Please enter it to verify your account.", otp),
 	}
+
+	messageMail := BuildMessage(contentEmail)
+
+	// send email
+	auth := smtp.PlainAuth("", global.Config.SMTP.Username, global.Config.SMTP.Password, global.Config.SMTP.Host)
+
+	err := smtp.SendMail(global.Config.SMTP.Host+":587", auth, from, to, []byte(messageMail))
+	if err != nil {
+		global.Logger.Error("Email send fail::", zap.Error(err))
+		return err
+	}
+	// Create a new message
+	//message := gomail.NewMessage()
+	//
+	//// Set email headers
+	//message.SetHeader("From", _const.HOST_EMAIL)
+	//message.SetHeader("To", to[0])
+	//message.SetHeader("Subject", "Verify OTP")
+	//
+	//// Set email body
+	//message.SetBody("text/plain", fmt.Sprintf("Your OTP is %s. Please enter it to verify your account.", otp))
+	//
+	//// Set up the SMTP dialer
+	//dialer := gomail.NewDialer(global.Config.MailTrap.Host, global.Config.MailTrap.Port, global.Config.MailTrap.Username, global.Config.MailTrap.Password)
+	//
+	//// Send the email
+	//if err := dialer.DialAndSend(message); err != nil {
+	//	fmt.Println("Error Send mail fail:: ", err)
+	//	panic(err)
+	//} else {
+	//	fmt.Println("Email sent successfully!")
+	//}
 	return nil
 }
 

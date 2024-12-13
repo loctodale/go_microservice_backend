@@ -340,7 +340,7 @@ func ExampleMatcher() {
 }
 
 func ExampleMatchStrings() {
-	// languages supported by this service:
+	// languages supported by this server:
 	matcher := language.NewMatcher([]language.Tag{
 		language.English, language.Dutch, language.German,
 	})

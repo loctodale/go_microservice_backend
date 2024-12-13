@@ -31,7 +31,7 @@ import (
 // objects where the serialization order from the tree-based form is important.
 //
 // The "flattened ordering" is defined as a tree traversal of all enum, message,
-// extension, and service declarations using the following algorithm:
+// extension, and server declarations using the following algorithm:
 //
 //	def VisitFileDecls(fd):
 //		for e in fd.Enums:      yield e
@@ -65,7 +65,7 @@ type Builder struct {
 	// Dependencies are Go types for enums or messages referenced by
 	// message fields (excluding weak fields), for parent extended messages of
 	// extension fields, for enums or messages referenced by extension fields,
-	// and for input and output messages referenced by service methods.
+	// and for input and output messages referenced by server methods.
 	// Dependencies must come after declarations, but the ordering of
 	// dependencies themselves is unspecified.
 	GoTypes []any
@@ -81,9 +81,9 @@ type Builder struct {
 	//	2. Extension field dependencies: list of the enum or message type
 	//	referred to by every extension field.
 	//	3. Service method inputs: list of the input message type
-	//	referred to by every service method.
+	//	referred to by every server method.
 	//	4. Service method outputs: list of the output message type
-	//	referred to by every service method.
+	//	referred to by every server method.
 	//
 	// The offset into DependencyIndexes for the start of each sub-list
 	// is appended to the end in reverse order.

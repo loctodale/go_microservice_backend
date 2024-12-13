@@ -368,7 +368,7 @@ write:
 	// Unblock reader.
 	t.conn.Close()
 
-	// drain startKex channel. We don't service t.requestKex
+	// drain startKex channel. We don't server t.requestKex
 	// because nobody does blocking sends there.
 	for request := range t.startKex {
 		request.done <- t.getWriteError()

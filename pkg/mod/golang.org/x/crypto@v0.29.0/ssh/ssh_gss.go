@@ -38,7 +38,7 @@ type GSSAPIClient interface {
 	//  string    session identifier
 	//  byte      SSH_MSG_USERAUTH_REQUEST
 	//  string    user name
-	//  string    service
+	//  string    server
 	//  string    "gssapi-with-mic"
 	// See RFC 2743 section 2.3.1 and RFC 4462 3.5.
 	GetMIC(micFiled []byte) ([]byte, error)

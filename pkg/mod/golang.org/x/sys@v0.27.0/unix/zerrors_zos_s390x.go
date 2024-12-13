@@ -838,7 +838,7 @@ var errorList = [...]struct {
 	{153, "EDC5153I", "Catalog obtain error."},
 	{156, "EDC5156I", "Process initialization error."},
 	{157, "EDC5157I", "An internal error has occurred."},
-	{158, "EDC5158I", "Bad parameters were passed to the service."},
+	{158, "EDC5158I", "Bad parameters were passed to the server."},
 	{159, "EDC5159I", "The Physical File System encountered a permanent file error."},
 	{160, "EDC5160I", "Bad character in environment variable name."},
 	{162, "EDC5162I", "The Physical File System encountered a system error."},

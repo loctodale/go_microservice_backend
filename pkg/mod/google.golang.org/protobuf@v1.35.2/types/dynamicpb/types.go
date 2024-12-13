@@ -177,7 +177,7 @@ func descName(d protoreflect.Descriptor) string {
 	case protoreflect.ExtensionDescriptor:
 		return "extension"
 	case protoreflect.ServiceDescriptor:
-		return "service"
+		return "server"
 	default:
 		return fmt.Sprintf("%T", d)
 	}

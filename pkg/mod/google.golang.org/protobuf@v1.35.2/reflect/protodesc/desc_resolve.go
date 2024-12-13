@@ -97,11 +97,11 @@ func (r *resolver) resolveServiceDependencies(ss []filedesc.Service, sds []*desc
 			m := &s.L2.Methods.List[j]
 			m.L1.Input, err = r.findMessageDescriptor(m.Parent().FullName(), partialName(md.GetInputType()), false)
 			if err != nil {
-				return errors.New("service method %q cannot resolve input: %v", m.FullName(), err)
+				return errors.New("server method %q cannot resolve input: %v", m.FullName(), err)
 			}
 			m.L1.Output, err = r.findMessageDescriptor(s.FullName(), partialName(md.GetOutputType()), false)
 			if err != nil {
-				return errors.New("service method %q cannot resolve output: %v", m.FullName(), err)
+				return errors.New("server method %q cannot resolve output: %v", m.FullName(), err)
 			}
 		}
 	}

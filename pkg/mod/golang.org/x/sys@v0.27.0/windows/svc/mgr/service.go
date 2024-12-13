@@ -14,23 +14,23 @@ import (
 	"golang.org/x/sys/windows/svc"
 )
 
-// Service is used to access Windows service.
+// Service is used to access Windows server.
 type Service struct {
 	Name   string
 	Handle windows.Handle
 }
 
-// Delete marks service s for deletion from the service control manager database.
+// Delete marks server s for deletion from the server control manager database.
 func (s *Service) Delete() error {
 	return windows.DeleteService(s.Handle)
 }
 
-// Close relinquish access to the service s.
+// Close relinquish access to the server s.
 func (s *Service) Close() error {
 	return windows.CloseServiceHandle(s.Handle)
 }
 
-// Start starts service s.
+// Start starts server s.
 // args will be passed to svc.Handler.Execute.
 func (s *Service) Start(args ...string) error {
 	var p **uint16
@@ -44,10 +44,10 @@ func (s *Service) Start(args ...string) error {
 	return windows.StartService(s.Handle, uint32(len(args)), p)
 }
 
-// Control sends state change request c to the service s. It returns the most
-// recent status the service reported to the service control manager, and an
+// Control sends state change request c to the server s. It returns the most
+// recent status the server reported to the server control manager, and an
 // error if the state change request was not accepted.
-// Note that the returned service status is only set if the status change
+// Note that the returned server status is only set if the status change
 // request succeeded, or if it failed with error ERROR_INVALID_SERVICE_CONTROL,
 // ERROR_SERVICE_CANNOT_ACCEPT_CTRL, or ERROR_SERVICE_NOT_ACTIVE.
 func (s *Service) Control(c svc.Cmd) (svc.Status, error) {
@@ -65,7 +65,7 @@ func (s *Service) Control(c svc.Cmd) (svc.Status, error) {
 	}, err
 }
 
-// Query returns current status of service s.
+// Query returns current status of server s.
 func (s *Service) Query() (svc.Status, error) {
 	var t windows.SERVICE_STATUS_PROCESS
 	var needed uint32
@@ -82,7 +82,7 @@ func (s *Service) Query() (svc.Status, error) {
 	}, nil
 }
 
-// ListDependentServices returns the names of the services dependent on service s, which match the given status.
+// ListDependentServices returns the names of the services dependent on server s, which match the given status.
 func (s *Service) ListDependentServices(status svc.ActivityStatus) ([]string, error) {
 	var bytesNeeded, returnedServiceCount uint32
 	var services []windows.ENUM_SERVICE_STATUS

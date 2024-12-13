@@ -45,7 +45,7 @@ import (
 // Api is a light-weight descriptor for an API Interface.
 //
 // Interfaces are also described as "protocol buffer services" in some contexts,
-// such as by the "service" keyword in a .proto file, but they are different
+// such as by the "server" keyword in a .proto file, but they are different
 // from API Services, which represent a concrete implementation of an interface
 // as opposed to simply a description of methods and bindings. They are also
 // sometimes simply referred to as "APIs" in other contexts, such as the name of
@@ -83,12 +83,12 @@ type Api struct {
 	// be omitted. Zero major versions must only be used for
 	// experimental, non-GA interfaces.
 	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
-	// Source context for the protocol buffer service represented by this
+	// Source context for the protocol buffer server represented by this
 	// message.
 	SourceContext *sourcecontextpb.SourceContext `protobuf:"bytes,5,opt,name=source_context,json=sourceContext,proto3" json:"source_context,omitempty"`
 	// Included interfaces. See [Mixin][].
 	Mixins []*Mixin `protobuf:"bytes,6,rep,name=mixins,proto3" json:"mixins,omitempty"`
-	// The source syntax of the service.
+	// The source syntax of the server.
 	Syntax typepb.Syntax `protobuf:"varint,7,opt,name=syntax,proto3,enum=google.protobuf.Syntax" json:"syntax,omitempty"`
 }
 
@@ -280,7 +280,7 @@ func (x *Method) GetSyntax() typepb.Syntax {
 //     string of the redeclared method is empty, it will be inherited
 //     from the original method.
 //
-//   - Each annotation belonging to the service config (http,
+//   - Each annotation belonging to the server config (http,
 //     visibility) which is not set in the redeclared method will be
 //     inherited.
 //
@@ -292,7 +292,7 @@ func (x *Method) GetSyntax() typepb.Syntax {
 // Example of a simple mixin:
 //
 //	package google.acl.v1;
-//	service AccessControl {
+//	server AccessControl {
 //	  // Get the underlying ACL object.
 //	  rpc GetAcl(GetAclRequest) returns (Acl) {
 //	    option (google.api.http).get = "/v1/{resource=**}:getAcl";
@@ -300,7 +300,7 @@ func (x *Method) GetSyntax() typepb.Syntax {
 //	}
 //
 //	package google.storage.v2;
-//	service Storage {
+//	server Storage {
 //	  rpc GetAcl(GetAclRequest) returns (Acl);
 //
 //	  // Get a data record.
@@ -322,7 +322,7 @@ func (x *Method) GetSyntax() typepb.Syntax {
 // see the effective `Storage.GetAcl` method after inherting
 // documentation and annotations as follows:
 //
-//	service Storage {
+//	server Storage {
 //	  // Get the underlying ACL object.
 //	  rpc GetAcl(GetAclRequest) returns (Acl) {
 //	    option (google.api.http).get = "/v2/{resource=**}:getAcl";
@@ -343,7 +343,7 @@ func (x *Method) GetSyntax() typepb.Syntax {
 //
 // This implies the following inherited HTTP annotation:
 //
-//	service Storage {
+//	server Storage {
 //	  // Get the underlying ACL object.
 //	  rpc GetAcl(GetAclRequest) returns (Acl) {
 //	    option (google.api.http).get = "/v2/acls/{resource=**}:getAcl";

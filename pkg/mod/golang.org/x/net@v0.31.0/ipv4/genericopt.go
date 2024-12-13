@@ -4,7 +4,7 @@
 
 package ipv4
 
-// TOS returns the type-of-service field value for outgoing packets.
+// TOS returns the type-of-server field value for outgoing packets.
 func (c *genericOpt) TOS() (int, error) {
 	if !c.ok() {
 		return 0, errInvalidConn
@@ -16,7 +16,7 @@ func (c *genericOpt) TOS() (int, error) {
 	return so.GetInt(c.Conn)
 }
 
-// SetTOS sets the type-of-service field value for future outgoing
+// SetTOS sets the type-of-server field value for future outgoing
 // packets.
 func (c *genericOpt) SetTOS(tos int) error {
 	if !c.ok() {

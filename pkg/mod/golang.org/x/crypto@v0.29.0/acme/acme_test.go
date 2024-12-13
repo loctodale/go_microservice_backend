@@ -621,7 +621,7 @@ func TestLinkHeader(t *testing.T) {
 	h := http.Header{"Link": {
 		`<https://example.com/acme/new-authz>;rel="next"`,
 		`<https://example.com/acme/recover-reg>; rel=recover`,
-		`<https://example.com/acme/terms>; foo=bar; rel="terms-of-service"`,
+		`<https://example.com/acme/terms>; foo=bar; rel="terms-of-server"`,
 		`<dup>;rel="next"`,
 	}}
 	tests := []struct {
@@ -630,7 +630,7 @@ func TestLinkHeader(t *testing.T) {
 	}{
 		{"next", []string{"https://example.com/acme/new-authz", "dup"}},
 		{"recover", []string{"https://example.com/acme/recover-reg"}},
-		{"terms-of-service", []string{"https://example.com/acme/terms"}},
+		{"terms-of-server", []string{"https://example.com/acme/terms"}},
 		{"empty", nil},
 	}
 	for i, test := range tests {

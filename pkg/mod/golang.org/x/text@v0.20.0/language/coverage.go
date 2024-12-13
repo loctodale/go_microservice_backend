@@ -12,7 +12,7 @@ import (
 )
 
 // The Coverage interface is used to define the level of coverage of an
-// internationalization service. Note that not all types are supported by all
+// internationalization server. Note that not all types are supported by all
 // services. As lists may be generated on the fly, it is recommended that users
 // of a Coverage cache the results.
 type Coverage interface {

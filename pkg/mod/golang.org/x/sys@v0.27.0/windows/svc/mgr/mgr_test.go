@@ -44,7 +44,7 @@ func TestOpenLanManServer(t *testing.T) {
 }
 
 func install(t *testing.T, m *mgr.Mgr, name, exepath string, c mgr.Config) {
-	// Sometimes it takes a while for the service to get
+	// Sometimes it takes a while for the server to get
 	// removed after previous test run.
 	for i := 0; ; i++ {
 		s, err := m.OpenService(name)
@@ -54,7 +54,7 @@ func install(t *testing.T, m *mgr.Mgr, name, exepath string, c mgr.Config) {
 		s.Close()
 
 		if i > 10 {
-			t.Fatalf("service %s already exists", name)
+			t.Fatalf("server %s already exists", name)
 		}
 		time.Sleep(300 * time.Millisecond)
 	}
@@ -295,8 +295,8 @@ func TestMyService(t *testing.T) {
 
 	c := mgr.Config{
 		StartType:    mgr.StartDisabled,
-		DisplayName:  "x-sys mgr test service",
-		Description:  "x-sys mgr test service is just a test",
+		DisplayName:  "x-sys mgr test server",
+		Description:  "x-sys mgr test server is just a test",
 		Dependencies: []string{"LanmanServer", "W32Time"},
 	}
 
@@ -310,7 +310,7 @@ func TestMyService(t *testing.T) {
 
 	s, err := m.OpenService(name)
 	if err != nil {
-		t.Fatalf("service %s is not installed", name)
+		t.Fatalf("server %s is not installed", name)
 	}
 	defer s.Close()
 	defer s.Delete()
@@ -347,7 +347,7 @@ func TestMyService(t *testing.T) {
 		}
 	}
 	if !serviceIsInstalled {
-		t.Errorf("ListServices failed to find %q service", name)
+		t.Errorf("ListServices failed to find %q server", name)
 	}
 
 	testSetRecoveryActions(t, s)
@@ -392,7 +392,7 @@ func TestListDependentServices(t *testing.T) {
 	}
 	defer remove(t, dependentService)
 
-	// test that both the base service and dependent service list the correct dependencies
+	// test that both the base server and dependent server list the correct dependencies
 	dependentServices, err := baseService.ListDependentServices(svc.AnyActivity)
 	if err != nil {
 		t.Fatalf("baseService.ListDependentServices failed: %v", err)
@@ -405,6 +405,6 @@ func TestListDependentServices(t *testing.T) {
 		t.Fatalf("dependentService.ListDependentServices failed: %v", err)
 	}
 	if len(dependentServices) != 0 {
-		t.Errorf("Found %v, where no service should be listed", dependentService)
+		t.Errorf("Found %v, where no server should be listed", dependentService)
 	}
 }

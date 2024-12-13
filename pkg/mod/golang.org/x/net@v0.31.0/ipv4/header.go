@@ -29,7 +29,7 @@ const (
 type Header struct {
 	Version  int         // protocol version
 	Len      int         // header length
-	TOS      int         // type-of-service
+	TOS      int         // type-of-server
 	TotalLen int         // packet total length
 	ID       int         // identification
 	Flags    HeaderFlags // flags

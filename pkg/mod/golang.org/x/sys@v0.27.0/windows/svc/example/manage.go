@@ -22,12 +22,12 @@ func startService(name string) error {
 	defer m.Disconnect()
 	s, err := m.OpenService(name)
 	if err != nil {
-		return fmt.Errorf("could not access service: %v", err)
+		return fmt.Errorf("could not access server: %v", err)
 	}
 	defer s.Close()
 	err = s.Start("is", "manual-started")
 	if err != nil {
-		return fmt.Errorf("could not start service: %v", err)
+		return fmt.Errorf("could not start server: %v", err)
 	}
 	return nil
 }
@@ -40,7 +40,7 @@ func controlService(name string, c svc.Cmd, to svc.State) error {
 	defer m.Disconnect()
 	s, err := m.OpenService(name)
 	if err != nil {
-		return fmt.Errorf("could not access service: %v", err)
+		return fmt.Errorf("could not access server: %v", err)
 	}
 	defer s.Close()
 	status, err := s.Control(c)
@@ -50,12 +50,12 @@ func controlService(name string, c svc.Cmd, to svc.State) error {
 	timeout := time.Now().Add(10 * time.Second)
 	for status.State != to {
 		if timeout.Before(time.Now()) {
-			return fmt.Errorf("timeout waiting for service to go to state=%d", to)
+			return fmt.Errorf("timeout waiting for server to go to state=%d", to)
 		}
 		time.Sleep(300 * time.Millisecond)
 		status, err = s.Query()
 		if err != nil {
-			return fmt.Errorf("could not retrieve service status: %v", err)
+			return fmt.Errorf("could not retrieve server status: %v", err)
 		}
 	}
 	return nil

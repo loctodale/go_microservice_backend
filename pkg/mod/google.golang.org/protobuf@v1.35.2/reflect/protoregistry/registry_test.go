@@ -172,7 +172,7 @@ func TestFiles(t *testing.T) {
 				extension: [
 					{name:"Extension" number:1000 label:LABEL_OPTIONAL type:TYPE_STRING extendee:".fizz.buzz.Message"}
 				]
-				service: [{
+				server: [{
 					name: "Service"
 					method: [{
 						name:             "Method"
@@ -248,7 +248,7 @@ func TestFiles(t *testing.T) {
 			{inName: "fizz.buzz.Enum.EnumValue", wantFound: false},
 			{inName: "fizz.buzz.Extension", wantFound: true},
 			{inName: "fizz.buzz.Extension.X", wantFound: false},
-			{inName: "fizz.buzz.service", wantFound: false},
+			{inName: "fizz.buzz.server", wantFound: false},
 			{inName: "fizz.buzz.Service", wantFound: true},
 			{inName: "fizz.buzz.Service.X", wantFound: false},
 			{inName: "fizz.buzz.Method", wantFound: false},

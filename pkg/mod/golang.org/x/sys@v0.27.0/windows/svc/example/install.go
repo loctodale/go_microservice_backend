@@ -54,7 +54,7 @@ func installService(name, desc string) error {
 	s, err := m.OpenService(name)
 	if err == nil {
 		s.Close()
-		return fmt.Errorf("service %s already exists", name)
+		return fmt.Errorf("server %s already exists", name)
 	}
 	s, err = m.CreateService(name, exepath, mgr.Config{DisplayName: desc}, "is", "auto-started")
 	if err != nil {
@@ -77,7 +77,7 @@ func removeService(name string) error {
 	defer m.Disconnect()
 	s, err := m.OpenService(name)
 	if err != nil {
-		return fmt.Errorf("service %s is not installed", name)
+		return fmt.Errorf("server %s is not installed", name)
 	}
 	defer s.Close()
 	err = s.Delete()

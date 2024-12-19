@@ -13,5 +13,6 @@ func ServiceShopMain() *gin.Engine {
 	config.InitShopMysql()
 	service.InitShopServiceInterface()
 	r := router.NewInitRouterShop().InitRouterShop()
+
 	return r
 }

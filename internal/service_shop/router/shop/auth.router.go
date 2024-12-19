@@ -8,8 +8,14 @@ import (
 type AuthRouter struct{}
 
 func (ar *AuthRouter) InitShopAuth(Router *gin.RouterGroup) {
-	shopPublicRouter := Router.Group("/shops")
+	shopPublicRouter := Router.Group("/auth/public")
 	{
 		shopPublicRouter.POST("/register", shop.NewAuthController.Register)
+		shopPublicRouter.POST("/verifyOTP", shop.NewAuthController.VerifyOTP)
+	}
+
+	shopPrivateRouter := Router.Group("/auth/private")
+	{
+		shopPrivateRouter.POST("/change_password", shop.NewAuthController.ChangePasswordRegister)
 	}
 }

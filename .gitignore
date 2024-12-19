@@ -50,3 +50,4 @@ bin/
 .certs/
 /certs
 /config/
+/nginx/

@@ -31,3 +31,10 @@ type LoginOutput struct {
 	Token   string `json:"token"`
 	Message string `json:"message"`
 }
+
+type ShopLoginOutput struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	ShopId       string `json:"shop_id"`
+	Message      string `json:"message"`
+}

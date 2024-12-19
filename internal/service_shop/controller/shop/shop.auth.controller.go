@@ -44,5 +44,27 @@ func (c *cShopAuthController) Register(ctx *gin.Context) {
 		response.ErrorResponse(ctx, response.ErrCodeOTPNotExists)
 		return
 	}
+}
 
+func (c *cShopAuthController) VerifyOTP(ctx *gin.Context) {
+	var params model.VerifyInput
+	if err := ctx.ShouldBind(&params); err != nil {
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid)
+	}
+	result, err := service.ShopRegisterService().VerifyOTP(ctx, params)
+	if err != nil {
+		global.Logger.Error(err.Error(), zap.Error(err))
+		return
+	}
+	response.SuccessResponse(ctx, 1, result)
+	return
+}
+
+func (c *cShopAuthController) ChangePasswordRegister(ctx *gin.Context) {
+	result, err := service.ShopRegisterService().ChangePasswordRegister(ctx)
+	if err != nil {
+		global.Logger.Error(err.Error(), zap.Error(err))
+	}
+	response.SuccessResponse(ctx, 1, result)
+	return
 }

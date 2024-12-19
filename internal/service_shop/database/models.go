@@ -12,8 +12,6 @@ import (
 type PreGoKeyToken9999 struct {
 	TokenID      uint64
 	ShopID       uint64
-	PublicKey    string
-	PrivateKey   string
 	RefreshToken string
 	KeyCreatedAt time.Time
 	KeyUpdatedAt time.Time

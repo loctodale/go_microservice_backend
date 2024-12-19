@@ -1,0 +1,54 @@
+[
+  {
+    "id": "api-shop-auth-public",
+    "upstream": {
+      "url": "https://crm-shop:8004"
+    },
+    "match": {
+      "url": "https://localhost/api/shops/auth/public/<.*>",
+      "methods": ["GET", "POST"]
+    },
+    "authenticators": [
+      {
+        "handler": "noop"
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "noop"
+      }
+    ]
+  },
+  {
+    "id": "api-shop-auth-private",
+    "upstream": {
+      "url": "https://crm-shop:8004"
+    },
+    "match": {
+      "url": "https://localhost/api/shops/auth/private/<.*>",
+      "methods": ["GET", "POST"]
+    },
+    "authenticators": [
+      {
+        "handler": "jwt",
+        "config": {
+          "jwks_urls": ["https://localhost:8010/.well-known/jwks.json"],
+          "trusted_issuers": ["https://localhost:8010/"],
+          "required_scope": ["read:shop", "write:shop"],
+          "target_audience": ["shop"]
+        }
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "noop"
+      }
+    ]
+  }
+]

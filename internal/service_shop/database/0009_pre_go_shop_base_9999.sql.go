@@ -7,7 +7,23 @@ package database
 
 import (
 	"context"
+	"database/sql"
 )
+
+const addIntoShopBase = `-- name: AddIntoShopBase :execresult
+INSERT into pre_go_shop_base_9999 (
+    shop_account, shop_password, shop_status, shop_created_at, shop_updated_at, shop_deleted_at
+) values (?,?,0, NOW(), NOW(), NOW())
+`
+
+type AddIntoShopBaseParams struct {
+	ShopAccount  string
+	ShopPassword string
+}
+
+func (q *Queries) AddIntoShopBase(ctx context.Context, arg AddIntoShopBaseParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, addIntoShopBase, arg.ShopAccount, arg.ShopPassword)
+}
 
 const checkShopBaseIsExists = `-- name: CheckShopBaseIsExists :one
 SELECT COUNT(shop_account)

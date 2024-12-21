@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"github.com/segmentio/kafka-go"
+	"go.uber.org/zap"
 	"go_microservice_backend_api/global"
 	_const "go_microservice_backend_api/internal/const"
 	"go_microservice_backend_api/internal/model"
@@ -13,6 +14,7 @@ import (
 	"go_microservice_backend_api/internal/service_shop/local"
 	"go_microservice_backend_api/internal/utils"
 	"go_microservice_backend_api/internal/utils/auth"
+	"go_microservice_backend_api/internal/utils/bloomFilter"
 	"go_microservice_backend_api/internal/utils/crypto"
 	"go_microservice_backend_api/internal/utils/random"
 	"go_microservice_backend_api/pkg/response"
@@ -99,11 +101,22 @@ func (s *sShopRegisterImpl) VerifyOTP(ctx context.Context, in model.VerifyInput)
 	if otpFound != in.VerifyCode {
 		return out, fmt.Errorf("Token is not valid")
 	}
-
+	saltKey, err := crypto.GenerateSalt(16)
+	if err != nil {
+		return out, err
+	}
+	saltPassword := crypto.HashPasswordSalt("1234", saltKey)
 	result, err := s.r.AddIntoShopBase(ctx, database.AddIntoShopBaseParams{
 		ShopAccount:  in.VerifyKey,
-		ShopPassword: "1234",
+		ShopPassword: saltPassword,
+		ShopSalt:     saltKey,
 	})
+	done := make(chan bool, 1)
+	go func() {
+		done <- bloomFilter.AddToBloomFilter("shop:register", in.VerifyKey)
+		fmt.Println("Bloom filter add to bloom filter shop:register")
+	}()
+	<-done
 	if err != nil {
 		return out, err
 	}
@@ -113,15 +126,16 @@ func (s *sShopRegisterImpl) VerifyOTP(ctx context.Context, in model.VerifyInput)
 	if err != nil {
 		return out, err
 	}
-
-	out.AccessToken, err = auth.NewJWTService().GenerateToken(strconv.FormatInt(shopId, 10), "shop")
+	var credentialId string
+	out.AccessToken, credentialId, err = auth.NewJWTService().GenerateTokenRegister(strconv.FormatInt(shopId, 10), in.VerifyKey, "shop")
 	out.RefreshToken = auth.NewJWTService().GenerateRefreshToken(strconv.FormatInt(shopId, 10))
 	if err != nil {
 		return out, err
 	}
 	result, err = s.r.AddKeyToken(ctx, database.AddKeyTokenParams{
-		ShopID:       uint64(shopId),
-		RefreshToken: out.RefreshToken,
+		ShopID:           uint64(shopId),
+		RefreshToken:     out.RefreshToken,
+		ShopCredentialID: credentialId,
 	})
 	if err != nil {
 		return out, err
@@ -132,6 +146,59 @@ func (s *sShopRegisterImpl) VerifyOTP(ctx context.Context, in model.VerifyInput)
 	return out, nil
 }
 
-func (s *sShopRegisterImpl) ChangePasswordRegister(ctx context.Context) (string, error) {
+func (s *sShopRegisterImpl) ChangePasswordRegister(ctx context.Context, username string, password string) (string, error) {
+	shop, err := s.r.GetShopByAccount(ctx, username)
+	if err != nil {
+		return "", err
+	}
+	saltPassword := crypto.HashPasswordSalt(password, shop.ShopSalt)
+	result, err := s.r.ChangePassword(ctx, database.ChangePasswordParams{
+		ShopPassword: saltPassword,
+		ShopAccount:  username,
+	})
+	if err != nil {
+		global.Logger.Error("Change Password Register Shop Failed", zap.Error(err))
+		return "Change password err", err
+	}
+	affectRow, err := result.RowsAffected()
+	if int(affectRow) != 1 {
+		return "", fmt.Errorf("Affect %d than 1 row", int(affectRow))
+	}
 	return "Change password success", nil
+}
+
+func (s *sShopRegisterImpl) LoginShop(ctx context.Context, in model.ShopLoginInput) (out model.ShopLoginOutput, err error) {
+	shop, err := s.r.GetShopByAccount(ctx, in.UserAccount)
+	if err != nil {
+		return out, err
+	}
+	if !crypto.MatchPassword(shop.ShopPassword, in.UserPassword, shop.ShopSalt) {
+		return out, fmt.Errorf("Password is not match")
+	}
+	keyToken, err := s.r.GetKeyTokenByShopId(ctx, shop.ShopID)
+	if err != nil {
+		return out, err
+	}
+	var newCredential string
+	out.AccessToken, newCredential, err = auth.NewJWTService().GenerateTokenLogin(strconv.FormatInt(int64(shop.ShopID), 10), in.UserAccount, "shop", keyToken.ShopCredentialID)
+	if err != nil {
+		global.Logger.Error("Generate Token Login Failed", zap.Error(err))
+		return out, err
+	}
+	out.RefreshToken = auth.NewJWTService().GenerateRefreshToken(strconv.FormatInt(int64(shop.ShopID), 10))
+	updateCredential, err := s.r.UpdateKeyToken(ctx, database.UpdateKeyTokenParams{
+		ShopCredentialID: newCredential,
+		RefreshToken:     out.RefreshToken,
+		TokenID:          keyToken.TokenID,
+	})
+	if err != nil {
+		return out, err
+	}
+	affectRow, err := updateCredential.RowsAffected()
+	if int(affectRow) != 1 {
+		return out, fmt.Errorf("Affect %d than 1 row", int(affectRow))
+	}
+	out.Message = "Login success"
+	out.ShopId = strconv.FormatInt(int64(shop.ShopID), 10)
+	return out, nil
 }

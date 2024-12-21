@@ -12,15 +12,51 @@ import (
 
 const addKeyToken = `-- name: AddKeyToken :execresult
 INSERT INTO pre_go_key_token_9999 (
-    shop_id, refresh_token, key_created_at, key_updated_at, key_deleted_at
-) VALUES (?, ?,NOW(), NOW(), NOW())
+    shop_id, refresh_token, shop_credential_id, key_created_at, key_updated_at, key_deleted_at
+) VALUES (?, ?,?,NOW(), NOW(), NOW())
 `
 
 type AddKeyTokenParams struct {
-	ShopID       uint64
-	RefreshToken string
+	ShopID           uint64
+	RefreshToken     string
+	ShopCredentialID string
 }
 
 func (q *Queries) AddKeyToken(ctx context.Context, arg AddKeyTokenParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, addKeyToken, arg.ShopID, arg.RefreshToken)
+	return q.db.ExecContext(ctx, addKeyToken, arg.ShopID, arg.RefreshToken, arg.ShopCredentialID)
+}
+
+const getKeyTokenByShopId = `-- name: GetKeyTokenByShopId :one
+SELECT shop_credential_id,refresh_token, token_id
+FROM pre_go_key_token_9999
+WHERE shop_id = ?
+`
+
+type GetKeyTokenByShopIdRow struct {
+	ShopCredentialID string
+	RefreshToken     string
+	TokenID          uint64
+}
+
+func (q *Queries) GetKeyTokenByShopId(ctx context.Context, shopID uint64) (GetKeyTokenByShopIdRow, error) {
+	row := q.db.QueryRowContext(ctx, getKeyTokenByShopId, shopID)
+	var i GetKeyTokenByShopIdRow
+	err := row.Scan(&i.ShopCredentialID, &i.RefreshToken, &i.TokenID)
+	return i, err
+}
+
+const updateKeyToken = `-- name: UpdateKeyToken :execresult
+UPDATE pre_go_key_token_9999
+SET refresh_token = ?, shop_credential_id = ?, key_updated_at = NOW()
+WHERE token_id = ?
+`
+
+type UpdateKeyTokenParams struct {
+	RefreshToken     string
+	ShopCredentialID string
+	TokenID          uint64
+}
+
+func (q *Queries) UpdateKeyToken(ctx context.Context, arg UpdateKeyTokenParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, updateKeyToken, arg.RefreshToken, arg.ShopCredentialID, arg.TokenID)
 }

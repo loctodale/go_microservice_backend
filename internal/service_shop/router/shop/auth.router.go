@@ -12,6 +12,7 @@ func (ar *AuthRouter) InitShopAuth(Router *gin.RouterGroup) {
 	{
 		shopPublicRouter.POST("/register", shop.NewAuthController.Register)
 		shopPublicRouter.POST("/verifyOTP", shop.NewAuthController.VerifyOTP)
+		shopPublicRouter.POST("/login", shop.NewAuthController.Login)
 	}
 
 	shopPrivateRouter := Router.Group("/auth/private")

@@ -12,17 +12,33 @@ import (
 
 const addIntoShopBase = `-- name: AddIntoShopBase :execresult
 INSERT into pre_go_shop_base_9999 (
-    shop_account, shop_password, shop_status, shop_created_at, shop_updated_at, shop_deleted_at
-) values (?,?,0, NOW(), NOW(), NOW())
+    shop_account, shop_password, shop_salt , shop_status, shop_created_at, shop_updated_at, shop_deleted_at
+) values (?,?,?,0, NOW(), NOW(), NOW())
 `
 
 type AddIntoShopBaseParams struct {
 	ShopAccount  string
 	ShopPassword string
+	ShopSalt     string
 }
 
 func (q *Queries) AddIntoShopBase(ctx context.Context, arg AddIntoShopBaseParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, addIntoShopBase, arg.ShopAccount, arg.ShopPassword)
+	return q.db.ExecContext(ctx, addIntoShopBase, arg.ShopAccount, arg.ShopPassword, arg.ShopSalt)
+}
+
+const changePassword = `-- name: ChangePassword :execresult
+UPDATE pre_go_shop_base_9999
+SET shop_password = ?
+WHERE shop_account = ?
+`
+
+type ChangePasswordParams struct {
+	ShopPassword string
+	ShopAccount  string
+}
+
+func (q *Queries) ChangePassword(ctx context.Context, arg ChangePasswordParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, changePassword, arg.ShopPassword, arg.ShopAccount)
 }
 
 const checkShopBaseIsExists = `-- name: CheckShopBaseIsExists :one
@@ -36,4 +52,23 @@ func (q *Queries) CheckShopBaseIsExists(ctx context.Context, shopAccount string)
 	var count int64
 	err := row.Scan(&count)
 	return count, err
+}
+
+const getShopByAccount = `-- name: GetShopByAccount :one
+SELECT shop_salt, shop_id, shop_password
+FROM pre_go_shop_base_9999
+WHERE shop_account = ?
+`
+
+type GetShopByAccountRow struct {
+	ShopSalt     string
+	ShopID       uint64
+	ShopPassword string
+}
+
+func (q *Queries) GetShopByAccount(ctx context.Context, shopAccount string) (GetShopByAccountRow, error) {
+	row := q.db.QueryRowContext(ctx, getShopByAccount, shopAccount)
+	var i GetShopByAccountRow
+	err := row.Scan(&i.ShopSalt, &i.ShopID, &i.ShopPassword)
+	return i, err
 }

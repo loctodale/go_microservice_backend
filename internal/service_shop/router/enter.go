@@ -4,8 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"go_microservice_backend_api/global"
 	"go_microservice_backend_api/internal/service_shop/router/shop"
-	"go_microservice_backend_api/internal/utils/auth"
-	"net/http"
 )
 
 type InitRouter struct {
@@ -32,6 +30,5 @@ func (ir *InitRouter) InitRouterShop() *gin.Engine {
 	{
 		shopAuthRouter.InitShopAuth(MainGroup)
 	}
-	r.GET("/.well-known/jwks.json", gin.WrapH(http.HandlerFunc(auth.NewJWTService().JWKSHandler)))
 	return r
 }

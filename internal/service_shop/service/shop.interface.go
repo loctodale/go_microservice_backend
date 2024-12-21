@@ -9,7 +9,8 @@ type (
 	IShopRegisterService interface {
 		Register(ctx context.Context, in model.RegisterInput) (codeResult int, err error)
 		VerifyOTP(ctx context.Context, in model.VerifyInput) (out model.ShopLoginOutput, err error)
-		ChangePasswordRegister(ctx context.Context) (string, error)
+		ChangePasswordRegister(ctx context.Context, username string, password string) (string, error)
+		LoginShop(ctx context.Context, in model.ShopLoginInput) (model.ShopLoginOutput, error)
 	}
 )
 

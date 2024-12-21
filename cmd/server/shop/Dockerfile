@@ -35,5 +35,6 @@ RUN update-ca-certificates
 # Copy private key for the application to use (if needed)
 COPY ../../../certs/key.pem /etc/ssl/private/key.pem
 
+
 # Set the entrypoint
 ENTRYPOINT ["/crm.shop.com", "config/local.yaml"]

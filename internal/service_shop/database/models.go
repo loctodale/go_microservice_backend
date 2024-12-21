@@ -10,18 +10,20 @@ import (
 )
 
 type PreGoKeyToken9999 struct {
-	TokenID      uint64
-	ShopID       uint64
-	RefreshToken string
-	KeyCreatedAt time.Time
-	KeyUpdatedAt time.Time
-	KeyDeletedAt time.Time
+	TokenID          uint64
+	ShopID           uint64
+	ShopCredentialID string
+	RefreshToken     string
+	KeyCreatedAt     time.Time
+	KeyUpdatedAt     time.Time
+	KeyDeletedAt     time.Time
 }
 
 type PreGoShopBase9999 struct {
 	ShopID        uint64
 	ShopAccount   string
 	ShopPassword  string
+	ShopSalt      string
 	ShopStatus    sql.NullInt32
 	ShopCreatedAt time.Time
 	ShopUpdatedAt time.Time

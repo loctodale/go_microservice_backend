@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS pre_go_product_category_9999(
 	category_description VARCHAR(255) NOT NULL,
 	category_icon VARCHAR(255) NOT NULL,
 	category_sort BIGINT NOT NULL,
-	category_deleted_at TIMESTAMP NOT NULL,
+	category_deleted_at TIMESTAMP,
 	category_created_at TIMESTAMP NOT NULL,
 	category_updated_at TIMESTAMP NOT NULL
 );

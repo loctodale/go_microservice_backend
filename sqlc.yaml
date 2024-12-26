@@ -20,3 +20,13 @@ sql:
         package: "database"
         out: "internal/service_shop/database"
 
+  - engine: "mysql"
+    queries:
+      - "sql/queries/product"
+    schema:
+      - "sql/schema/product"
+    gen:
+      go:
+        package: "database"
+        out: "internal/service_product/database"
+

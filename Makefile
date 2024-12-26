@@ -32,7 +32,7 @@ resetse:
 sqlgen:
 	sqlc generate
 swag:
-	swag init -g ./cmd/server/main.go -o ./cmd/swag/docs
+	swag init -g ./cmd/server/user/main.go -o ./cmd/swag/docs
 kafka_sync:
 	curl -i -X POST -H "Accept: application/json" -H "Content-Type:application/json" localhost:8083/connectors/ -d @$(json_name)
 .PHONY: dev downse upse resetse docker_build docker_stop docker_up swag upto

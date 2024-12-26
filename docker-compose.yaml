@@ -45,7 +45,7 @@ services:
     container_name: demo_mysql_container
     environment:
       MYSQL_ROOT_PASSWORD: root1234
-      MYSQL_DATABASE: shopdevgo
+      MYSQL_DATABASE: shopdev_user
       MYSQL_USER: crm_user
       MYSQL_PASSWORD: root1234
     ports:
@@ -122,6 +122,33 @@ services:
     volumes:
       - ./certs:/certs
       - ./nginx/rsa_private.pem:/rsa_private.pem
+#      - ./internal/service_shop:/app
+  crm-product:
+    container_name: go_product_service
+    build:
+      context: .
+      dockerfile: cmd/server/product/Dockerfile
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+      - connect
+      - kafka-ui
+      - kafka0
+      - zookeeper
+    ports:
+      - "8011:8005"
+      - "2345:2345"
+    volumes:
+      - ./certs:/certs
+      - ./nginx/rsa_private.pem:/rsa_private.pem
+#      - ./internal/service_product:/app
+#      - ./go.mod:/go.mod
+#      - ./go.sum:/go.sum
+#      - ./cmd/server/product/main.go:/app/main.go
+    environment:
+      - AIR_CONFIG_PATH=/app/.air.toml
+
   #######################################
   # Postgres: The database used by Kong
   #######################################
@@ -224,3 +251,6 @@ services:
       - kong-database
     ports:
       - "1337:1337"
+
+volumes:
+  crm-product-cache:

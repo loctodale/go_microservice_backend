@@ -23,7 +23,7 @@ var NewAuthController = new(cShopAuthController)
 // @Param        payload body model.RegisterInput true "payload"
 // @Success      200  {object}  response.ResponseData
 // @Failure      500  {object}  response.ErrorResponseData
-// @Router       /api/shops/auth/public/register [post]
+// @Router       /shops/auth/public/register [post]
 func (c *cShopAuthController) Register(ctx *gin.Context) {
 	var params model.RegisterInput
 	if err := ctx.ShouldBind(&params); err != nil {
@@ -55,7 +55,7 @@ func (c *cShopAuthController) Register(ctx *gin.Context) {
 // @Param        payload body model.VerifyInput true "payload"
 // @Success      200  {object}  response.ResponseData
 // @Failure      500  {object}  response.ErrorResponseData
-// @Router       /api/shops/auth/public/verifyOTP [post]
+// @Router       /shops/auth/public/verifyOTP [post]
 func (c *cShopAuthController) VerifyOTP(ctx *gin.Context) {
 	var params model.VerifyInput
 	if err := ctx.ShouldBind(&params); err != nil {
@@ -79,7 +79,7 @@ func (c *cShopAuthController) VerifyOTP(ctx *gin.Context) {
 // @Param        payload body model.ShopChangePasswordRegisterInput true "payload"
 // @Success      200  {object}  response.ResponseData
 // @Failure      500  {object}  response.ErrorResponseData
-// @Router       /api/shops/auth/private/change_password
+// @Router       /shops/auth/private/change_password
 func (c *cShopAuthController) ChangePasswordRegister(ctx *gin.Context) {
 	username := ctx.GetHeader("X-Consumer-Username")
 	var params model.ShopChangePasswordRegisterInput
@@ -103,7 +103,7 @@ func (c *cShopAuthController) ChangePasswordRegister(ctx *gin.Context) {
 // @Param        payload body model.ShopLoginInput true "payload"
 // @Success      200  {object}  response.ResponseData
 // @Failure      500  {object}  response.ErrorResponseData
-// @Router       /api/shops/auth/public/login
+// @Router       /shops/auth/public/login
 func (c *cShopAuthController) Login(ctx *gin.Context) {
 	var params model.ShopLoginInput
 	if err := ctx.ShouldBind(&params); err != nil {

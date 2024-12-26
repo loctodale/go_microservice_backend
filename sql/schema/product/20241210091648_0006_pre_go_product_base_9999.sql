@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS pre_go_product_base_9999 (
 	spu_status BIGINT NOT NULL,
 	spu_created_at TIMESTAMP NOT NULL,
 	spu_updated_at TIMESTAMP NOT NULL,
-	spu_deleted_at TIMESTAMP NOT NULL
+	spu_deleted_at TIMESTAMP
 	);
 -- +goose StatementEnd
 

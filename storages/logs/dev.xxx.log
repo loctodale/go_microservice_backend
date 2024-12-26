@@ -503,3 +503,13 @@
 {"level":"INFO","time":"2024-12-20T18:56:09.052+0700","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
 {"level":"ERROR","time":"2024-12-20T18:56:09.128+0700","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp: lookup demo_redis_container: no such host","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/Users/loctodale/go/src/github.com/loctodale/go_microservice_backend/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/Users/loctodale/go/src/github.com/loctodale/go_microservice_backend/internal/initialize/run.go:14\nmain.main\n\t/Users/loctodale/go/src/github.com/loctodale/go_microservice_backend/cmd/server/shop/main.go:14\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:272"}
 {"level":"INFO","time":"2024-12-20T18:56:09.128+0700","caller":"private_config/config.go:30","msg":"Init mysql success","dsn":"root:root1234@tcp(demo_mysql_container:3306)/shopdev_shop?charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true"}
+{"level":"INFO","time":"2024-12-24T15:45:02.520Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-24T15:45:27.048Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-25T07:23:51.962Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"ERROR","time":"2024-12-25T07:23:56.976Z","caller":"initialize/redis.go:23","msg":"Redis initialization error","error":"dial tcp 125.235.4.59:6379: i/o timeout","stacktrace":"go_microservice_backend_api/internal/initialize.InitReids\n\t/app/internal/initialize/redis.go:23\ngo_microservice_backend_api/internal/initialize.Run\n\t/app/internal/initialize/run.go:14\nmain.main\n\t/app/cmd/server/product/main.go:29\nruntime.main\n\t/usr/lib/go/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2024-12-26T06:24:48.326Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-26T06:31:49.067Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-26T07:12:39.113Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-26T07:12:58.751Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-26T07:22:20.663Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}
+{"level":"INFO","time":"2024-12-26T07:29:29.165Z","caller":"initialize/run.go:13","msg":"Config log ok","ok":"success"}

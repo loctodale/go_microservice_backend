@@ -5,7 +5,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go_microservice_backend_api/internal/initialize"
-	"go_microservice_backend_api/internal/service_shop"
+	"go_microservice_backend_api/internal/service_product"
 	"log"
 	"net/http"
 )
@@ -22,16 +22,16 @@ import (
 // @license.name  Apache 2.0
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host      localhost:8004
+// @host      localhost:8005
 // @BasePath  /api
 // @schema http
 func main() {
 	initialize.Run()
-	r := service_shop.ServiceShopMain()
+	r := service_product.ProductServiceMain()
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	server := &http.Server{
-		Addr:    ":8004",
+		Addr:    ":8005",
 		Handler: r,
 		TLSConfig: &tls.Config{
 			InsecureSkipVerify: true, // Skip verification of client certificates
@@ -40,6 +40,6 @@ func main() {
 	//r.Run(":8002")
 	err := server.ListenAndServeTLS("/certs/cert.crt", "/certs/key.pem")
 	if err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+		log.Fatalf("Failed to startss server: %v", err)
 	}
 }

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS pre_go_product_sku_9999(
 	sku_attribute_value VARCHAR(255) NOT NULL,
 	sku_created_at TIMESTAMP NOT NULL,
 	sku_updated_at TIMESTAMP NOT NULL,
-	sku_deleted_at TIMESTAMP NOT NULL
+	sku_deleted_at TIMESTAMP 
 );
 -- +goose StatementEnd
 

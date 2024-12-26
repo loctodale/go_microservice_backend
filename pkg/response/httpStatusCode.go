@@ -15,12 +15,15 @@ const (
 
 	//Authen
 	ErrCodeAuthFailed = -41
+
+	//Product
+	ErrCreateFailed = -100
 )
 
 // message
 var msg = map[int]string{
 	CodeSuccess:             "Success",
-	ErrCodeParamInvalid:     "Email is invalid",
+	ErrCodeParamInvalid:     "Params is invalid",
 	ErrInvalidToken:         "Token is invalid",
 	ErrorCodeUserHasExited:  "User has existed",
 	ErrInvalidOTP:           "OTP error",
@@ -29,4 +32,5 @@ var msg = map[int]string{
 	ErrCodeOTPNotExists:     "OTP loign is not exists",
 	ErrCodeUSerOTPNotExists: "User otp loign is not exists",
 	ErrCodeAuthFailed:       "Auth failed",
+	ErrCreateFailed:         "Failed to create",
 }

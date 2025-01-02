@@ -1,0 +1,16 @@
+{
+  "name": "user-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",
+    "database.hostname": "demo_mysql_container",
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "root1234",
+    "database.server.id": "17253",
+    "topic.prefix": "mysql_db_shopdev_user",
+    "database.include.list": "shopdevgo",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka0:9092",
+    "schema.history.internal.kafka.topic": "schema-changes.user"
+  }
+}

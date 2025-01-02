@@ -1,0 +1,59 @@
+syntax = "proto3";
+package productservice;
+option go_package = "/grpc-gen";
+import "google/api/annotations.proto";
+
+service ProductService  {
+  rpc CreateNewProduct (CreateProductInput) returns (SampleResponse){
+    option (google.api.http) = {
+      post: "/product/private"
+      body: "*"
+    };
+  };
+  rpc CreateNewCategory (CreateCategoryInput) returns (SampleResponse){
+    option (google.api.http) = {
+      post: "/category/private"
+      body: "*"
+    };
+  }
+  rpc CreateNewSKU (CreateSKUInput) returns (SampleResponse) {
+    option (google.api.http) = {
+      post: "/product/private/sku"
+      body: "*"
+    };
+  }
+}
+
+message CreateProductInput {
+  int32 CategoryID = 1;
+  int32 BrandID = 2;
+  string SPUName = 3;
+  string SPUDesc = 4;
+  string SPUImg = 5;
+  string SPUVideo = 6;
+  int32 SPUSort = 7;
+  int32 SPUPrice = 8;
+}
+
+message CreateCategoryInput {
+  int32 ParentID = 1;
+  string CategoryName = 2;
+  bool HasActiveChildren = 3;
+  int32 CategorySPUCount = 4;
+  int32 CategoryStatus = 5;
+  string CategoryDescription = 6;
+  string CategoryIcon = 7;
+  int32 CategorySort = 8;
+}
+
+message CreateSKUInput {
+  int32 SpuID = 1;
+  int32 SPUPrice = 2;
+  string SKUAttributeValue = 3;
+  int32 SKUStock = 4;
+}
+
+message SampleResponse {
+  int32 StatusCode = 1;
+  string Message = 2;
+}

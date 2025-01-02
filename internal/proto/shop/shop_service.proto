@@ -1,0 +1,66 @@
+syntax = "proto3";
+package shopservice;
+option go_package = "/grpc-gen";
+import "google/api/annotations.proto";
+service ShopService {
+  rpc ShopRegister(ShopRegisterInput) returns (SampleResponse) {
+    option (google.api.http) = {
+      post: "/shop/auth/public/register",
+      body: "*"
+    };
+  };
+  rpc ShopVerifyOTP(ShopVerifyOTPInput) returns (VerifyOTPResponse){
+    option (google.api.http) = {
+      post: "/shop/auth/public/verifyOTP",
+      body: "*"
+    };
+  };
+  rpc ShopChangePasswordVerify(ShopChangePasswordVerifyInput) returns (StringResponse) {
+    option (google.api.http) = {
+      post: "/shop/auth/private/changePassword",
+      body: "*"
+    };
+  };
+  rpc ShopLogin(ShopLoginInput) returns (VerifyOTPResponse) {
+    option (google.api.http) = {
+      post: "/shop/auth/public/login"
+      body: "*"
+    };
+  }
+}
+
+message ShopRegisterInput{
+  string VerifyKey = 1;
+  string VerifyPurpose = 2;
+  string VerifyType = 3;
+}
+
+message ShopVerifyOTPInput{
+  string VerifyCode = 1;
+  string VerifyKey = 2;
+}
+
+message ShopChangePasswordVerifyInput {
+  string Password = 1;
+}
+
+message ShopLoginInput {
+  string Username = 1;
+  string Password = 2;
+}
+message SampleResponse {
+  int32 StatusCode = 1;
+  string Message = 2;
+}
+
+message VerifyOTPResponse {
+  int32 StatusCode = 1;
+  string Message = 2;
+  string AccessToken = 3;
+  string RefreshToken = 4;
+  string ShopId = 5;
+}
+
+message StringResponse {
+  string Message = 1;
+}

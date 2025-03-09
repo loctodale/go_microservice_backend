@@ -1,0 +1,5 @@
+obj/Debug/net8.0/Protos/OrderService.cs \
+obj/Debug/net8.0/Protos/OrderServiceGrpc.cs: /home/loctodale/.nuget/packages/microsoft.aspnetcore.grpc.jsontranscoding/8.0.11/content/protos/google/api/http.proto\
+ /home/loctodale/.nuget/packages/grpc.tools/2.57.0/build/native/include/google/protobuf/descriptor.proto\
+ /home/loctodale/.nuget/packages/microsoft.aspnetcore.grpc.jsontranscoding/8.0.11/content/protos/google/api/annotations.proto\
+ Protos/order_service.proto

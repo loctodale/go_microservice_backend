@@ -1,0 +1,48 @@
+syntax = "proto3";
+package orderservice;
+option csharp_namespace = "order_service";
+import "google/api/annotations.proto";
+
+service OrderService {
+  rpc GetAllOrder (Empty) returns (ResponseGetAllOrder){
+    option (google.api.http) = {
+      get: "/order/private"
+    };
+  };
+  
+  rpc GetOrderById (RequestGetOrderById) returns (ResponseGetOrderById  ) {
+    option (google.api.http) = {
+      get: "/order/private/getById",
+      body: "*"
+    };
+  }
+}
+message Empty {
+
+}
+// Entities
+message Order {
+  int32 OrderId = 1;
+  int32 OrderUserId = 2;
+  int32 OrderShippingId = 3;
+  string OrderPayment = 4;
+  string OrderTrackingNumber = 5;
+  string OrderStatus = 6;
+}
+//Request
+message RequestGetOrderById {
+  int32 OrderId = 1;
+}
+
+// Response
+message ResponseGetAllOrder {
+  int32 StatusCode = 1;
+  string Message = 2;
+  repeated Order Data = 3;
+}
+
+message ResponseGetOrderById {
+  int32 StatusCode = 1;
+  string Message = 2;
+  Order Data = 3;
+}

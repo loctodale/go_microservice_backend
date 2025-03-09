@@ -1,0 +1,56 @@
+syntax = "proto3";
+package orderdetailservice;
+option csharp_namespace = "order_detail_service";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+service OrderDetailService {
+  rpc GetOrderDetail (RequestGetOrderDetail) returns (ResponseGetOrderDetail) {
+    option (google.api.http) = {
+      get: "/orderDetail",
+      body: "*"
+    };
+  }
+  
+  rpc CreateOrderDetail (RequestCreateOrderDetail) returns (EmptyResponse) {
+    option (google.api.http) = {
+      post: "/orderDetail",
+      body: "*"
+    };
+  }
+}
+
+message RequestGetOrderDetail {
+  int32 OrderDetailId = 1;
+}
+
+message RequestCreateOrderDetail  {
+  int32 OrderId = 1;
+  int32 ProductId = 2;
+  int32 Quantity = 3;
+  int32 PriceEachItem = 4;
+  int32 TotalPrice = 5;
+}
+
+message OrderDetail {
+  int32 OrderDetailId = 1;
+  int32 OrderId = 2;
+  int32 ProductId = 3;
+  int32 Quantity = 4;
+  int32 PriceEachItem = 5;
+  int32 TotalPrice = 6;
+  google.protobuf.Timestamp CreatedAt = 7;
+  google.protobuf.Timestamp UpdatedAt = 8;
+  google.protobuf.Timestamp DeletedAt = 9;
+  
+}
+
+message ResponseGetOrderDetail {
+  int32 StatusCode = 1;
+  string Message = 2;
+  OrderDetail Data = 3;
+}
+
+message EmptyResponse {
+  int32 StatusCode = 1;
+  string Message = 2;
+}

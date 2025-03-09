@@ -1,0 +1,2 @@
+Server=localhost,1433;Database=shopdev_order;User Id=sa;Password=01224528911Ss;Encrypt=True;TrustServerCertificate=True;
+

@@ -1,0 +1,58 @@
+server:
+  port: 8082
+  mode: "dev"
+mysql:
+  user_service:
+    host: demo_mysql_container
+    port: 3306
+    username: root
+    password: root1234
+    dbName: shopdev_user
+    maxIdelConns: 10
+    maxOpenConns: 100
+    connMaxLifeTime: 3600
+  product_service:
+    host: demo_mysql_container
+    port: 3306
+    username: root
+    password: root1234
+    dbName: shopdev_product
+    maxIdelConns: 10
+    maxOpenConns: 100
+    connMaxLifeTime: 3600
+  shop_service:
+    host: demo_mysql_container
+    port: 3306
+    username: root
+    password: root1234
+    dbName: shopdev_shop
+    maxIdelConns: 10
+    maxOpenConns: 100
+    connMaxLifeTime: 3600
+logger:
+  log_level: debug
+  file_log_name: "./storages/logs/dev.001.log"
+  max_backups: 30
+  max_ag: 7
+  max_size: 1024
+  compress: true
+redis:
+  host: demo_redis_container
+  port: 6379
+  password:
+  database: 0
+  numbits: 1000
+smtp:
+  host: smtp.gmail.com
+  port: 587
+  username: thang336655@gmail.com
+  password: mjwz dorf bevl uqcr
+jwt:
+  TOKEN_HOUR_LIFESPAN: 1
+  JWT_EXPIRATION: 1h
+  API_SECRET: xxxyyyzzzxxxyyyzzz
+mailtrap:
+  username: b274fadd163ae6
+  password: c2d716a9bbec03
+  host: sandbox.smtp.mailtrap.io
+  port: 587

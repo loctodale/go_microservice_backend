@@ -1,14 +1,4 @@
 services:
-#  nginx:
-#    image: nginx:latest
-#    ports:
-#      - "443:443"
-#    volumes:
-#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-#      - ./certs:/etc/nginx/certs
-#    depends_on:
-#      - crm-shop
-#      - crm-shopdev
   zookeeper:
     image: quay.io/debezium/zookeeper:${DEBEZIUM_VERSION}
     container_name: demo_zookeeper
@@ -40,6 +30,16 @@ services:
       - "9089:8080"
     links:
       - kafka0
+  mssql: 
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssqlserver
+    restart: always
+    hostname: mssql
+    environment:
+      SA_PASSWORD: 01224528911Ss
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
   mysql:
     image: mysql:8.0
     container_name: demo_mysql_container
@@ -73,7 +73,7 @@ services:
   crm-shopdev:
     container_name: go_backend_crm_shopdev
     build:
-      context: .
+      context: go_microservice_backend
       dockerfile: cmd/server/user/Dockerfile
     restart: always
     depends_on:
@@ -86,11 +86,11 @@ services:
     ports:
       - "8008:8002"
     volumes:
-      - ./certs:/certs
+      - ./go_microservice_backend/certs:/certs
   crm-sendmail:
     container_name: go_sendmail_service
     build:
-      context: .
+      context: go_microservice_backend
       dockerfile: cmd/server/sendmail/Dockerfile
     restart: always
     depends_on:
@@ -103,11 +103,11 @@ services:
     ports:
       - "8009:8003"
     volumes:
-      - ./certs:/certs
+      - ./go_microservice_backend/certs:/certs
   crm-shop:
     container_name: go_shop_service
     build:
-      context: .
+      context: go_microservice_backend
       dockerfile: cmd/server/shop/Dockerfile
     restart: always
     depends_on:
@@ -121,14 +121,11 @@ services:
       - "8010:8004"
       - "7001:6001"
     volumes:
-      - ./certs:/certs
-      - ./nginx/rsa_private.pem:/rsa_private.pem
-      - ./internal/proto/shop:/app/proto
-      - ./google:/google
+      - ./go_microservice_backend/certs:/certs
   crm-product:
     container_name: go_product_service
     build:
-      context: .
+      context: go_microservice_backend
       dockerfile: cmd/server/product/Dockerfile
     restart: always
     depends_on:
@@ -141,11 +138,22 @@ services:
     ports:
       - "6002:7002"
     volumes:
-      - ./certs:/certs
-      - ./nginx/rsa_private.pem:/rsa_private.pem
-    environment:
-      - AIR_CONFIG_PATH=/app/.air.toml
+      - ./go_microservice_backend/certs:/certs
+#    environment:
+#      - AIR_CONFIG_PATH=/app/.air.toml
 
+  crm-order:
+    container_name: dotnet_order_service
+    build:
+      context: dotnet_microservice_backend
+      dockerfile: Order.API/Dockerfile
+    restart: always
+    depends_on:
+      - redis
+      - connect
+      - kafka-ui
+      - kafka0
+      - zookeeper
   #######################################
   # Postgres: The database used by Kong
   #######################################
@@ -156,7 +164,7 @@ services:
       POSTGRES_DB: kong
       POSTGRES_PASSWORD: kong
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./kong_gateway/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     healthcheck:
@@ -173,7 +181,7 @@ services:
     command: "kong migrations bootstrap -c /etc/kong/kong.conf"
     restart: on-failure
     volumes:
-      - ./kong/kong.conf:/etc/kong/kong.conf
+      - ./kong_gateway/kong/kong.conf:/etc/kong/kong.conf
     environment:
       KONG_PG_HOST: kong-database
       KONG_PG_USER: kong
@@ -193,7 +201,9 @@ services:
       KONG_PG_HOST: kong-database
       KONG_PG_USER: kong
       KONG_PG_PASSWORD: kong
-      KONG_DATABASE: postgres
+#      KONG_DATABASE: postgres
+      KONG_DECLARATIVE_CONFIG: "/etc/kong/kong-config.yaml"
+      KONG_DATABASE: "off"
       KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl
       KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
 #      KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
@@ -216,10 +226,12 @@ services:
       - "8001:8001"
       - "8444:8444"
     volumes:
-      - ./certs:/etc/certs
-      - ./internal/proto:/usr/local/kong/internal/proto
-      - ./google:/usr/local/kong/include/google
-      - ./protobuf:/google/protobuf
+      - ./go_microservice_backend/certs:/etc/certs
+      - ./go_microservice_backend/internal/proto:/usr/local/kong/internal/go/proto
+      - ./dotnet_microservice_backend/Order.API/Protos:/usr/local/kong/internal/dotnet/proto/order
+      - ./go_microservice_backend/google:/usr/local/kong/include/google
+      - ./go_microservice_backend/protobuf:/google/protobuf
+      - ./kong_gateway/kong/kong-config.yaml:/etc/kong/kong-config.yaml
 
   #######################################
   # Konga database prepare

@@ -1,0 +1,18 @@
+_format_version: "3.0"
+_transform: true
+services:
+  - name: shop-service
+    host: crm-shop
+    port: 6001
+    protocol: grpcs
+    plugins:
+      - name: grpc-gateway
+        config:
+          proto: /usr/local/kong/internal/go/proto/shop/shop_service.proto
+    routes:
+      - name: shop-register-auth
+        paths:
+          - /shop/auth/public
+        method: get, put, post, delete
+        protocols:
+          - name: https
